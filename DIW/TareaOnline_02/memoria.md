@@ -6,7 +6,7 @@
 **Año Académico:** 2025-2026  
 **Asignatura:** Diseño de Interfaces Web  
 **Tarea Online 02:** Hojas de Estilos  
-**Link:** https://fcasmen658.github.io/TareaOnline_02/Actividad_4/  
+**Link:** https://fcasmen658.github.io/DIW/TareaOnline_02/Actividad_4/index.html  
 
 ---
 
