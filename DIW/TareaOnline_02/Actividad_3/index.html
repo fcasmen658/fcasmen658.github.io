@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BillarPro - Tu tienda especializada en productos de billar de alta calidad">
+    <title>BillarPro - Equipos de Billar Profesional</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;500;600;700&family=Oswald:wght@300;400;500;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <!-- Logo -->
+                <div class="logo">
+                    <img src="images/logo.png" alt="BillarPro - Equipos de Billar Profesional" class="logo-img">
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="nav-desktop">
+                    <a href="#inicio" class="nav-link">Inicio</a>
+                    <a href="productos.html" class="nav-link">Productos</a>
+                    <a href="#sobre-nosotros" class="nav-link">Sobre Nosotros</a>
+                    <a href="#contacto" class="nav-link">Contacto</a>
+                </nav>
+
+                <!-- Search Bar -->
+                <form class="search-bar" action="busqueda.html" method="get">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="11" cy="11" r="8"></circle>
+                        <path d="m21 21-4.35-4.35"></path>
+                    </svg>
+                    <input type="text" name="q" placeholder="Buscar productos..." class="search-input">
+                </form>
+
+                <!-- Cart and Mobile Menu -->
+                <div class="header-actions">
+                    <button class="cart-btn">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="9" cy="21" r="1"></circle>
+                            <circle cx="20" cy="21" r="1"></circle>
+                            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                        </svg>
+                        <span class="cart-badge">0</span>
+                    </button>
+
+                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                        <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </svg>
+                        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Navigation -->
+            <nav class="nav-mobile" id="mobileMenu">
+                <a href="#inicio" class="nav-link-mobile">Inicio</a>
+                <a href="productos.html" class="nav-link-mobile">Productos</a>
+                <a href="#sobre-nosotros" class="nav-link-mobile">Sobre Nosotros</a>
+                <a href="#contacto" class="nav-link-mobile">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="inicio" class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1 class="hero-title">
+                    <span class="hero-title-line1">Todo para tu</span>
+                    <span class="hero-title-line2">mesa de billar</span>
+                </h1>
+                <p class="hero-description">
+                    Descubre nuestra amplia selección de productos de billar de alta calidad. 
+                    Desde tacos profesionales hasta accesorios esenciales, tenemos todo lo que 
+                    necesitas para perfeccionar tu juego.
+                </p>
+                <div class="hero-buttons">
+                    <a href="productos.html" class="btn btn-primary">Ver Productos</a>
+                    <a href="#contacto" class="btn btn-secondary">Contáctanos</a>
+                </div>
+            </div>
+        </div>
+        <div class="hero-image">
+            <svg class="hero-svg-overlay" width="192" height="452" viewBox="0 0 192 452" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M0 0H96L0 452V0Z" fill="#FFFFFF"/>
+                <path d="M96 0H192L96 452H0L96 0Z" fill="#212121"/>
+            </svg>
+            <img src="images/hero.jpg" alt="Jugador profesional de billar concentrándose en el tiro">
+        </div>
+    </section>
+
+    <!-- Featured Products Section -->
+    <section id="productos" class="featured-products">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Productos Destacados</h2>
+                <p class="section-description">Descubre nuestros productos más populares y de mayor calidad</p>
+            </div>
+
+            <div class="products-grid">
+                <!-- Product Card 1 -->
+                <div class="product-card">
+                    <a href="producto_tacos.html" class="product-image-wrapper">
+                        <img src="images/tacos.jpeg" 
+                             alt="Taco Profesional Predator" 
+                             class="product-image">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-2">Oferta</span>
+                        <span class="badge bg-primary position-absolute top-0 end-0 m-2">Tacos</span>
+                    </a>
+                    <div class="product-content">
+                        <h3 class="product-name">
+                            <a href="producto_tacos.html">Taco Profesional Predator</a>
+                        </h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                            <span class="review-count">(124)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">450€</span>
+                            <span class="price-original">500€</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <button class="btn btn-success w-100 d-flex align-items-center justify-content-center gap-2">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
+                            Agregar al Carrito
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 2 -->
+                <div class="product-card">
+                    <a href="producto_bolas.html" class="product-image-wrapper">
+                        <img src="images/bolas.jpg" 
+                             alt="Set de Bolas Premium Aramith" 
+                             class="product-image">
+                        <span class="badge bg-primary position-absolute top-0 end-0 m-2">Bolas</span>
+                    </a>
+                    <div class="product-content">
+                        <h3 class="product-name">
+                            <a href="producto_bolas.html">Set de Bolas Premium Aramith</a>
+                        </h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                            <span class="review-count">(89)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">280€</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <button class="btn btn-success w-100 d-flex align-items-center justify-content-center gap-2">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
+                            Agregar al Carrito
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 3 -->
+                <div class="product-card">
+                    <a href="producto_tizas.html" class="product-image-wrapper">
+                        <img src="images/tizas.jpg" 
+                             alt="Tiza Master Chalk" 
+                             class="product-image">
+                        <span class="badge bg-info position-absolute top-0 end-0 m-2">Accesorios</span>
+                    </a>
+                    <div class="product-content">
+                        <h3 class="product-name">
+                            <a href="producto_tizas.html">Tiza Master Chalk (12 piezas)</a>
+                        </h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star">★</span>
+                            </div>
+                            <span class="review-count">(76)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">35€</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <button class="btn btn-success w-100 d-flex align-items-center justify-content-center gap-2">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
+                            Agregar al Carrito
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Product Card 4 -->
+                <div class="product-card">
+                    <a href="producto_mesas.html" class="product-image-wrapper">
+                        <img src="images/mesas.png" 
+                             alt="Mesa de Snooker Professional" 
+                             class="product-image">
+                        <span class="badge bg-danger position-absolute top-0 start-0 m-2">Oferta</span>
+                        <span class="badge bg-warning text-dark position-absolute top-0 end-0 m-2">Mesas</span>
+                    </a>
+                    <div class="product-content">
+                        <h3 class="product-name">
+                            <a href="producto_mesas.html">Mesa de Snooker Professional</a>
+                        </h3>
+                        <div class="product-rating">
+                            <div class="stars">
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                                <span class="star filled">★</span>
+                            </div>
+                            <span class="review-count">(45)</span>
+                        </div>
+                        <div class="product-price">
+                            <span class="price-current">8500€</span>
+                            <span class="price-original">9200€</span>
+                        </div>
+                    </div>
+                    <div class="product-footer">
+                        <button class="btn btn-success w-100 d-flex align-items-center justify-content-center gap-2">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="9" cy="21" r="1"></circle>
+                                <circle cx="20" cy="21" r="1"></circle>
+                                <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+                            </svg>
+                            Agregar al Carrito
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="section-footer">
+                <a href="productos.html" class="btn btn-primary btn-lg">Ver Todos los Productos</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="sobre-nosotros" class="about-section">
+        <div class="container">
+            <div class="about-grid">
+                <div class="about-content">
+                    <h2 class="section-title">La mejor experiencia en billar</h2>
+                    <p class="about-text">
+                        En BillarPro somos apasionados del billar y nos dedicamos a ofrecer 
+                        los mejores productos y servicios para jugadores de todos los niveles. 
+                        Desde principiantes hasta profesionales, tenemos todo lo que necesitas 
+                        para mejorar tu juego.
+                    </p>
+
+                    <div class="features-grid">
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="8" r="7"></circle>
+                                    <polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline>
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3 class="feature-title">Calidad Premium</h3>
+                                <p class="feature-description">Productos de las mejores marcas mundiales de billar</p>
+                            </div>
+                        </div>
+
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                                    <circle cx="9" cy="7" r="4"></circle>
+                                    <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                                    <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3 class="feature-title">Experiencia</h3>
+                                <p class="feature-description">Más de 20 años en el mundo del billar profesional</p>
+                            </div>
+                        </div>
+
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <circle cx="12" cy="12" r="10"></circle>
+                                    <polyline points="12 6 12 12 16 14"></polyline>
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3 class="feature-title">Soporte 24/7</h3>
+                                <p class="feature-description">Asesoramiento personalizado para todos tus proyectos</p>
+                            </div>
+                        </div>
+
+                        <div class="feature">
+                            <div class="feature-icon">
+                                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="1" y="3" width="15" height="13"></rect>
+                                    <polygon points="16 8 20 8 23 11 23 16 16 16 16 8"></polygon>
+                                    <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                                    <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                                </svg>
+                            </div>
+                            <div class="feature-text">
+                                <h3 class="feature-title">Envío Gratis</h3>
+                                <p class="feature-description">Entrega gratuita en compras superiores a 100€</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="about-image">
+                    <img src="images/mesa_img.jpg" 
+                         alt="Sala de billar profesional">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonios -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+                <p class="section-description">Testimonios reales de jugadores satisfechos</p>
+            </div>
+
+            <div class="testimonials-grid">
+                <!-- Testimonio 1 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Los tacos que compré en BillarPro han mejorado significativamente mi juego. 
+                        La calidad es excepcional y el servicio al cliente es de primera."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">CM</div>
+                        <div class="author-info">
+                            <h4 class="author-name">Carlos Mendoza</h4>
+                            <p class="author-role">Jugador Profesional</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 2 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Equipé toda mi sala con productos de BillarPro. La calidad-precio es insuperable 
+                        y mis clientes siempre comentan lo bien que se siente jugar aquí."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">AR</div>
+                        <div class="author-info">
+                            <h4 class="author-name">Ana Rodríguez</h4>
+                            <p class="author-role">Propietaria de Salón de Billar</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonio 3 -->
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                        <span class="star filled">★</span>
+                    </div>
+                    <p class="testimonial-text">
+                        "Como aficionado, encontré en BillarPro todo lo que necesitaba para mi mesa casera. 
+                        El asesoramiento fue perfecto y la entrega muy rápida."
+                    </p>
+                    <div class="testimonial-author">
+                        <div class="author-avatar">MT</div>
+                        <div class="author-info">
+                            <h4 class="author-name">Miguel Torres</h4>
+                            <p class="author-role">Entusiasta del Billar</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contacto" class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <!-- Company Info -->
+                <div class="footer-column footer-main">
+                    <h3 class="footer-title">BillarPro</h3>
+                    <p class="footer-text">
+                        Tu tienda especializada en productos de billar de alta calidad. 
+                        Ofrecemos todo lo que necesitas para llevar tu juego al siguiente nivel.
+                    </p>
+                    
+                    <div class="footer-contact">
+                        <div class="contact-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                                <circle cx="12" cy="10" r="3"></circle>
+                            </svg>
+                            <span>Calle del Percebe 13, Almería, España</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+                            </svg>
+                            <span>+34 (666) 12 34 56</span>
+                        </div>
+                        <div class="contact-item">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                            <span>info@billarpro.com</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="footer-column">
+                    <h4 class="footer-heading">Enlaces Rápidos</h4>
+                    <ul class="footer-links">
+                        <li><a href="#inicio">Inicio</a></li>
+                        <li><a href="#productos">Productos</a></li>
+                        <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+                        <li><a href="#contacto">Contacto</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Categorías -->
+                <div class="footer-column">
+                    <h4 class="footer-heading">Categorías</h4>
+                    <ul class="footer-links">
+                        <li><a href="#productos">Tacos</a></li>
+                        <li><a href="#productos">Bolas</a></li>
+                        <li><a href="#productos">Mesas</a></li>
+                        <li><a href="#productos">Accesorios</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p class="footer-copyright">Diseñado por fcasmen658 con 
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20" fill="#000000" style="opacity:1;">
+                        <path  d="M2 6.342a3.375 3.375 0 0 1 6-2.088a3.375 3.375 0 0 1 5.997 2.26c-.063 2.134-1.618 3.76-2.955 4.784a14.4 14.4 0 0 1-2.676 1.61q-.031.015-.05.022l-.014.006l-.004.002h-.002a.75.75 0 0 1-.592.001h-.002l-.004-.003l-.015-.006a6 6 0 0 1-.232-.107a14.4 14.4 0 0 1-2.535-1.557C3.564 10.22 1.999 8.558 1.999 6.38z"/>
+                    </svg>
+                    para BillarPro. © 2025. Todos los derechos reservados.</p>
+                
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Instagram">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+                        </svg>
+                    </a>
+                    <a href="#" aria-label="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+</body>
+</html>
