@@ -79,6 +79,45 @@
             color: var(--primary);
         }
 
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-lg);
+            min-width: 200px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--text);
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .dropdown a:hover {
+            background: var(--bg-alt);
+            color: var(--primary);
+        }
+
         /* Hero Section */
         .hero {
             padding: 6rem 0;
@@ -338,15 +377,19 @@
             <a href="#" class="logo">FC</a>
             <ul class="nav-links">
                 <li><a href="#inicio">Inicio</a></li>
-                <li><a href="#modulos">Módulos</a></li>
-                <li><a href="DIW.html">DIW</a></li>
-                <li><a href="Java.html">Java</a></li>
-                <li><a href="DEWC.html">DEWC</a></li>
-                <li><a href="DEWS.html">DEWS</a></li>
-                <li><a href="DAW.html">DAW</a></li>
-                <li><a href="BBDD.html">BBDD</a></li>
-                <li><a href="LLMM.html">LLMM</a></li>
-                <li><a href="ED.html">ED</a></li>
+                <li class="nav-item">
+                    <a href="#modulos">Módulos</a>
+                    <div class="dropdown">
+                        <a href="BBDD.html">Bases de Datos</a>
+                        <a href="DAW.html">Despliegue de Aplicaciones Web</a>
+                        <a href="DEWC.html">Desarrollo Web en Entorno Cliente</a>
+                        <a href="DEWS.html">Desarrollo Web en Entorno Servidor</a>
+                        <a href="DIW.html">Diseño de Interfaces Web</a>
+                        <a href="ED.html">Entornos de Desarrollo</a>
+                        <a href="Java.html">Programación Java</a>
+                        <a href="LLMM.html">Lenguajes de Marcas</a>
+                    </div>
+                </li>
                 <li><a href="#sobre-mi">Sobre mí</a></li>
                 <li><a href="https://github.com/fcasmen658" target="_blank">GitHub</a></li>
             </ul>
