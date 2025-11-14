@@ -146,6 +146,32 @@ input[type="datetime-local"]:focus {
     flex-grow: 1;
 }
 
+.delivery-actions {
+    display: flex;
+    gap: 5px;
+    flex-shrink: 0;
+}
+
+.btn-edit {
+    background: #ffc107;
+    color: #212529;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.2s, transform 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-edit:hover {
+    background: #e0a800;
+    transform: scale(1.1);
+}
+
 .btn-delete {
     background: #dc3545;
     color: white;
@@ -166,6 +192,70 @@ input[type="datetime-local"]:focus {
 .btn-delete:hover {
     background: #c82333;
     transform: scale(1.1);
+}
+
+.edit-form {
+    margin-top: 15px;
+    padding: 15px;
+    background: #f8f9fa;
+    border-radius: 6px;
+    border: 1px solid #dee2e6;
+}
+
+.edit-description,
+.edit-datetime {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.edit-description:focus,
+.edit-datetime:focus {
+    outline: none;
+    border-color: #667eea;
+    box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.1);
+}
+
+.edit-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+}
+
+.btn-save {
+    background: #28a745;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-save:hover {
+    background: #218838;
+}
+
+.btn-cancel {
+    background: #6c757d;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 600;
+    transition: background-color 0.2s;
+}
+
+.btn-cancel:hover {
+    background: #545b62;
 }
 
 .delivery-datetime {
@@ -226,9 +316,19 @@ input[type="datetime-local"]:focus {
         font-size: 1.1em;
     }
 
-    .btn-delete {
+    .delivery-actions {
         position: absolute;
         top: 15px;
         right: 15px;
+        flex-direction: row;
+    }
+
+    .edit-buttons {
+        flex-direction: column;
+    }
+
+    .edit-description,
+    .edit-datetime {
+        font-size: 16px; /* Prevenir zoom en iOS */
     }
 }

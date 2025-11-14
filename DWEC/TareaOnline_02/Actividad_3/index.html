@@ -105,13 +105,24 @@
             deliveryDiv.innerHTML = `
                 <div class="delivery-header">
                     <h3 class="delivery-title">${delivery.description}</h3>
-                    <button class="btn-delete" onclick="deleteDelivery(${index})">×</button>
+                    <div class="delivery-actions">
+                        <button class="btn-edit" onclick="startEdit(${index})" title="Editar">✏️</button>
+                        <button class="btn-delete" onclick="deleteDelivery(${index})" title="Eliminar">×</button>
+                    </div>
                 </div>
                 <div class="delivery-datetime">
                     ${formatDate(new Date(delivery.datetime))}
                 </div>
                 <div class="delivery-countdown ${isExpired ? 'expired' : ''}">
                     ${isExpired ? 'Hace' : 'Faltan'} ${timeInfo.timeString}
+                </div>
+                <div class="edit-form" style="display: none;">
+                    <input type="text" class="edit-description" value="${delivery.description}" maxlength="100">
+                    <input type="datetime-local" class="edit-datetime" value="${delivery.datetime.slice(0, 16)}">
+                    <div class="edit-buttons">
+                        <button class="btn-save" onclick="saveEdit(${index})">Guardar</button>
+                        <button class="btn-cancel" onclick="cancelEdit(${index})">Cancelar</button>
+                    </div>
                 </div>
             `;
 
@@ -200,6 +211,75 @@
                 localStorage.setItem('deliveries', JSON.stringify(deliveries));
                 renderDeliveries();
             }
+        }
+
+        // Función para iniciar edición
+        function startEdit(index) {
+            const deliveryElement = document.querySelector(`[data-index="${index}"]`);
+            const title = deliveryElement.querySelector('.delivery-title');
+            const datetime = deliveryElement.querySelector('.delivery-datetime');
+            const countdown = deliveryElement.querySelector('.delivery-countdown');
+            const editForm = deliveryElement.querySelector('.edit-form');
+
+            // Ocultar elementos normales
+            title.style.display = 'none';
+            datetime.style.display = 'none';
+            countdown.style.display = 'none';
+
+            // Mostrar formulario de edición
+            editForm.style.display = 'block';
+        }
+
+        // Función para guardar edición
+        function saveEdit(index) {
+            const deliveryElement = document.querySelector(`[data-index="${index}"]`);
+            const editDescription = deliveryElement.querySelector('.edit-description').value.trim();
+            const editDatetime = deliveryElement.querySelector('.edit-datetime').value;
+
+            if (!editDescription) {
+                alert('La descripción no puede estar vacía.');
+                return;
+            }
+
+            if (!editDatetime) {
+                alert('Debes seleccionar una fecha y hora.');
+                return;
+            }
+
+            const targetDate = new Date(editDatetime);
+            const now = new Date();
+
+            if (targetDate <= now) {
+                alert('La fecha debe ser futura.');
+                return;
+            }
+
+            // Actualizar la entrega
+            deliveries[index].description = editDescription;
+            deliveries[index].datetime = editDatetime;
+
+            // Guardar en localStorage
+            localStorage.setItem('deliveries', JSON.stringify(deliveries));
+
+            // Renderizar de nuevo
+            renderDeliveries();
+        }
+
+        // Función para cancelar edición
+        function cancelEdit(index) {
+            const deliveryElement = document.querySelector(`[data-index="${index}"]`);
+            const title = deliveryElement.querySelector('.delivery-title');
+            const datetime = deliveryElement.querySelector('.delivery-datetime');
+            const countdown = deliveryElement.querySelector('.delivery-countdown');
+            const editForm = deliveryElement.querySelector('.edit-form');
+
+            // Mostrar elementos normales
+            title.style.display = 'block';
+            datetime.style.display = 'block';
+            countdown.style.display = 'block';
+
+            // Ocultar formulario de edición
+            editForm.style.display = 'none';
         }
 
         // Función para actualizar contadores cada segundo
