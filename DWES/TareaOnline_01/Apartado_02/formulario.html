@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Venta de Abonos - UD Almería</title>
+    <link rel="stylesheet" href="styles/general.css">
+</head>
+<body>
+
+    <div class="container">
+        <img src="img/logo.png" alt="Logo UD Almería" class="logo">
+        <h1>Venta de Abonos UD Almería</h1>
+
+        <form action="compra_abono.php" method="post">
+            <label for="nombre">Nombre y apellidos:</label>
+            <input type="text" id="nombre" name="nombre" required>
+
+            <label for="dni">DNI:</label>
+            <input type="text" id="dni" name="dni" required>
+
+            <label for="fecha_nacimiento">Fecha de nacimiento:</label>
+            <input type="date" id="fecha_nacimiento" name="fecha_nacimiento" required>
+
+            <label for="telefono">Teléfono:</label>
+            <input type="tel" id="telefono" name="telefono" required>
+
+            <label for="cuenta_bancaria">Cuenta bancaria:</label>
+            <input type="text" id="cuenta_bancaria" name="cuenta_bancaria" required>
+
+            <label for="tipo_abono">Tipo de abono:</label>
+            <select id="tipo_abono" name="tipo_abono" required>
+                <option value="" selected></option>
+                <option value="tribuna">Tribuna (500€)</option>
+                <option value="preferencia">Preferencia (300€)</option>
+                <option value="fondo">Fondo (110€)</option>
+            </select>
+
+            <div class="terminos">
+                <input type="checkbox" id="terminos" name="terminos" required>
+                <label for="terminos">Acepto términos</label>
+            </div>
+
+            <button type="submit">Comprar</button>
+        </form>
+    </div>
+
+</body>
+</html>
