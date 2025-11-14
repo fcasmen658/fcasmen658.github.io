@@ -79,6 +79,46 @@
             color: var(--primary);
         }
 
+        .nav-item {
+            position: relative;
+        }
+
+        .dropdown {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: var(--bg);
+            border: 1px solid var(--border);
+            border-radius: 0.5rem;
+            box-shadow: var(--shadow-lg);
+            min-width: 320px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+            white-space: nowrap;
+        }
+
+        .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .dropdown a {
+            display: block;
+            padding: 0.75rem 1.25rem;
+            color: var(--text);
+            text-decoration: none;
+            transition: background 0.2s;
+        }
+
+        .dropdown a:hover {
+            background: var(--bg-alt);
+            color: var(--primary);
+        }
+
         /* Hero Section */
         .hero {
             padding: 6rem 0;
