@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrado César</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #555;
+        }
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: monospace;
+            resize: vertical;
+        }
+        textarea[readonly] {
+            background-color: #f9f9f9;
+            cursor: not-allowed;
+        }
+        input[type="number"] {
+            width: 100px;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+        button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+        }
+        .btn-cipher {
+            background-color: #28a745;
+            color: white;
+        }
+        .btn-cipher:hover {
+            background-color: #218838;
+        }
+        .btn-decipher {
+            background-color: #007bff;
+            color: white;
+        }
+        .btn-decipher:hover {
+            background-color: #0056b3;
+        }
+        .btn-copy {
+            background-color: #6c757d;
+            color: white;
+        }
+        .btn-copy:hover {
+            background-color: #545b62;
+        }
+        .status {
+            margin-top: 10px;
+            padding: 8px;
+            border-radius: 4px;
+            display: none;
+        }
+        .status.success {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .status.error {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Cifrado César</h1>
+
+        <div class="form-group">
+            <label for="input-text">Texto de entrada:</label>
+            <textarea id="input-text" rows="4" placeholder="Introduce el texto a cifrar o descifrar..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="key">Clave (desplazamiento):</label>
+            <input type="number" id="key" value="3" min="-100" max="100">
+        </div>
+
+        <div class="buttons">
+            <button class="btn-cipher" onclick="cipher()">Cifrar</button>
+            <button class="btn-decipher" onclick="decipher()">Descifrar</button>
+            <button class="btn-copy" onclick="copyResult()">Copiar resultado</button>
+        </div>
+
+        <div class="form-group">
+            <label for="output-text">Resultado:</label>
+            <textarea id="output-text" rows="4" readonly placeholder="El resultado aparecerá aquí..."></textarea>
+        </div>
+
+        <div id="status" class="status"></div>
+    </div>
+
+    <script>
+        // Alfabetos español con ñ
+        const ABC_MIN = "abcdefghijklmnñopqrstuvwxyz";
+        const ABC_MAY = ABC_MIN.toUpperCase();
+
+        // Función para mostrar mensajes de estado
+        function showStatus(message, type = 'success') {
+            const status = document.getElementById('status');
+            status.textContent = message;
+            status.className = `status ${type}`;
+            status.style.display = 'block';
+            setTimeout(() => {
+                status.style.display = 'none';
+            }, 3000);
+        }
+
+        // Función para cifrar/descifrar un carácter
+        function shiftChar(char, shift, alphabet) {
+            const index = alphabet.indexOf(char);
+            if (index === -1) return char; // No está en el alfabeto, devolver sin cambios
+
+            // Calcular nueva posición con módulo
+            const newIndex = (index + shift) % alphabet.length;
+            // Ajustar para números negativos
+            const adjustedIndex = newIndex < 0 ? newIndex + alphabet.length : newIndex;
+
+            return alphabet[adjustedIndex];
+        }
+
+        // Función principal de cifrado/descifrado
+        function processText(text, shift) {
+            let result = '';
+
+            for (let char of text) {
+                if (ABC_MIN.includes(char)) {
+                    // Minúscula
+                    result += shiftChar(char, shift, ABC_MIN);
+                } else if (ABC_MAY.includes(char)) {
+                    // Mayúscula
+                    result += shiftChar(char, shift, ABC_MAY);
+                } else {
+                    // Otros caracteres (espacios, signos, números) sin cambios
+                    result += char;
+                }
+            }
+
+            return result;
+        }
+
+        // Función para cifrar
+        function cipher() {
+            const inputText = document.getElementById('input-text').value;
+            const key = parseInt(document.getElementById('key').value);
+
+            if (!inputText.trim()) {
+                showStatus('Por favor, introduce un texto para cifrar.', 'error');
+                return;
+            }
+
+            if (isNaN(key)) {
+                showStatus('Por favor, introduce una clave válida.', 'error');
+                return;
+            }
+
+            const result = processText(inputText, key);
+            document.getElementById('output-text').value = result;
+            showStatus('Texto cifrado correctamente.');
+        }
+
+        // Función para descifrar
+        function decipher() {
+            const inputText = document.getElementById('input-text').value;
+            const key = parseInt(document.getElementById('key').value);
+
+            if (!inputText.trim()) {
+                showStatus('Por favor, introduce un texto para descifrar.', 'error');
+                return;
+            }
+
+            if (isNaN(key)) {
+                showStatus('Por favor, introduce una clave válida.', 'error');
+                return;
+            }
+
+            // Para descifrar, usamos el desplazamiento negativo
+            const result = processText(inputText, -key);
+            document.getElementById('output-text').value = result;
+            showStatus('Texto descifrado correctamente.');
+        }
+
+        // Función para copiar al portapapeles
+        async function copyResult() {
+            const outputText = document.getElementById('output-text').value;
+
+            if (!outputText.trim()) {
+                showStatus('No hay resultado para copiar.', 'error');
+                return;
+            }
+
+            try {
+                await navigator.clipboard.writeText(outputText);
+                showStatus('Resultado copiado al portapapeles.');
+            } catch (err) {
+                // Fallback para navegadores que no soportan clipboard API
+                const textArea = document.createElement('textarea');
+                textArea.value = outputText;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showStatus('Resultado copiado al portapapeles.');
+            }
+        }
+
+        // Permitir usar Enter en el input de clave para cifrar
+        document.getElementById('key').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                cipher();
+            }
+        });
+    </script>
+</body>
+</html>
