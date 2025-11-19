@@ -1,0 +1,11 @@
+Resultados de aprendizaje o criterios de evaluación trabajados:
+6.c) Se ha recuperado información almacenada en bases de datos. : 9
+6.e) Se han utilizado conjuntos de datos para almacenar la información. : 9
+
+----------------------------------
+
+Apartado 1. Excelente trabajo.
+
+Apartado 2. Excelente trabajo. En los intentos que obtener un asiento válido no reutilizas la función que tienes para generar el asiento. A la hora de mostrar el ticket, deberías consultar el registro que acaba de guardarse en la base de datos y no tomar los datos del formulario. Recuerda que la información correcta siempre es la que está en la base de datos.
+
+Apartado 3. Excelente trabajo. No deberías mostrar los iconos como caracteres directamente en el código.

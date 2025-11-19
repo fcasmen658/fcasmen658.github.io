@@ -486,19 +486,14 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             $asiento = null;
             $intento = 0;
             while ($intento < 5) {
+                // Usar la función generarCodigoAsiento existente
                 $desc = strtolower($tipoSeleccionado['descripcion']);
-                $primeraLetra = '';
-                if (strpos($desc, 'tribuna') !== false) $primeraLetra = 'T';
-                elseif (strpos($desc, 'preferencia') !== false) $primeraLetra = 'P';
-                else $primeraLetra = 'F';
+                $tipo_para_funcion = '';
+                if (strpos($desc, 'tribuna') !== false) $tipo_para_funcion = 'tribuna';
+                elseif (strpos($desc, 'preferencia') !== false) $tipo_para_funcion = 'preferencia';
+                else $tipo_para_funcion = 'fondo';
 
-                $bloque = rand(1,5);
-                $fila = rand(0,29);
-                $fila_formateada = sprintf('%02d', $fila);
-                $max_asientos = 200 - (2 * (29 - $fila));
-                $asiento_num = rand(0, max(0, $max_asientos - 1));
-                $asiento_form = sprintf('%03d', $asiento_num);
-                $posible = $primeraLetra . 'B' . $bloque . '/F' . $fila_formateada . '-A' . $asiento_form;
+                $posible = generarCodigoAsiento($tipo_para_funcion);
 
                 // comprobar existencia en BD
                 $stmtCheck = $pdo->prepare('SELECT COUNT(*) as c FROM abonos WHERE asiento = :asiento');
@@ -531,17 +526,36 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         ':precio' => $precio_final,
                     ]);
 
-                    // Preparar datos para mostrar ticket
+                    // Preparar datos para mostrar ticket consultando la base de datos
                     $mostrar_ticket = true;
-                    $datos['fecha_compra'] = $fechaCompra->format('d/m/Y H:i:s');
-                    $datos['abonado'] = $datos['nombre'];
-                    $datos['dni'] = $datos['dni'];
-                    $datos['telefono'] = $datos['telefono'];
-                    $datos['tipo_abono'] = $tipoSeleccionado['descripcion'];
-                    $datos['codigo_asiento'] = $asiento;
-                    $datos['precio_final'] = $precio_final;
-                    $datos['tarifa_especial'] = $tarifa_especial;
-                    $datos['edad'] = $edadAno;
+
+                    // Consultar el registro recién guardado en la base de datos
+                    $stmtTicket = $pdo->prepare('
+                        SELECT a.fecha, a.abonado, a.edad, a.telefono, a.asiento, a.precio,
+                               t.descripcion as tipo_abono
+                        FROM abonos a
+                        JOIN tipo_abonos t ON a.tipo = t.id
+                        WHERE a.id = :id
+                    ');
+                    $stmtTicket->execute([':id' => $idVenta]);
+                    $registroTicket = $stmtTicket->fetch(PDO::FETCH_ASSOC);
+
+                    if ($registroTicket) {
+                        // Usar los datos de la base de datos para el ticket
+                        $datos['fecha_compra'] = date('d/m/Y H:i:s', strtotime($registroTicket['fecha']));
+                        $datos['abonado'] = $registroTicket['abonado'];
+                        $datos['dni'] = $datos['dni']; // El DNI no se guarda en la BD, mantener del formulario
+                        $datos['telefono'] = $registroTicket['telefono'];
+                        $datos['tipo_abono'] = $registroTicket['tipo_abono'];
+                        $datos['codigo_asiento'] = $registroTicket['asiento'];
+                        $datos['precio_final'] = (float)$registroTicket['precio'];
+                        $datos['tarifa_especial'] = ($registroTicket['precio'] < $precio_base) ? 1 : 0;
+                        $datos['edad'] = $registroTicket['edad'];
+                    } else {
+                        // Fallback en caso de error de consulta
+                        $errores['bd'] = 'Error al recuperar los datos del ticket.';
+                        $mostrar_ticket = false;
+                    }
                 } catch (PDOException $e) {
                     $errores['bd'] = 'Error al guardar la venta: ' . $e->getMessage();
                 }
