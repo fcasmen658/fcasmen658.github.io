@@ -56,7 +56,7 @@
                             <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
                             <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
                         </svg>
-                        <svg class="moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                        <svg class="moon-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
                         </svg>
                     </button>
@@ -70,13 +70,14 @@
                         <span class="cart-badge">0</span>
                     </button>
 
-                    <button class="mobile-menu-btn" id="mobileMenuBtn">
+                    <button class="mobile-menu-btn" id="mobileMenuBtn" type="button" aria-label="Abrir menú" title="Abrir menú" aria-controls="mobileMenu" aria-expanded="false">
+                        <span class="visually-hidden">Abrir menú principal</span>
                         <svg class="menu-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="3" y1="12" x2="21" y2="12"></line>
                             <line x1="3" y1="6" x2="21" y2="6"></line>
                             <line x1="3" y1="18" x2="21" y2="18"></line>
                         </svg>
-                        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="display: none;">
+                        <svg class="close-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <line x1="18" y1="6" x2="6" y2="18"></line>
                             <line x1="6" y1="6" x2="18" y2="18"></line>
                         </svg>
@@ -160,7 +161,8 @@
                     <div class="product-actions">
                         <div class="quantity-selector">
                             <button class="qty-btn" id="decreaseQty">-</button>
-                            <input type="number" value="1" min="1" max="10" class="qty-input" id="qtyInput">
+                            <label for="qtyInput" class="visually-hidden">Cantidad de sets de bolas</label>
+                            <input type="number" value="1" min="1" max="10" class="qty-input" id="qtyInput" placeholder="Cantidad" title="Cantidad">
                             <button class="qty-btn" id="increaseQty">+</button>
                         </div>
                         <button class="btn btn-primary btn-add-to-cart">
@@ -379,7 +381,7 @@
             
             <div class="footer-bottom">
                 <p class="footer-copyright">Diseñado por fcasmen658 con 
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20" fill="#000000" style="opacity:1;">
+                    <svg class="footer-heart-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20">
                         <path  d="M2 6.342a3.375 3.375 0 0 1 6-2.088a3.375 3.375 0 0 1 5.997 2.26c-.063 2.134-1.618 3.76-2.955 4.784a14.4 14.4 0 0 1-2.676 1.61q-.031.015-.05.022l-.014.006l-.004.002h-.002a.75.75 0 0 1-.592.001h-.002l-.004-.003l-.015-.006a6 6 0 0 1-.232-.107a14.4 14.4 0 0 1-2.535-1.557C3.564 10.22 1.999 8.558 1.999 6.38z"/>
                     </svg>
                     para BillarPro. © 2025. Todos los derechos reservados.</p>

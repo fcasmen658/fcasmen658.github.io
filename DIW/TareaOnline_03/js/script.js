@@ -5,6 +5,7 @@ const mobileMenuBtn = document.getElementById('mobileMenuBtn');
 const mobileMenu = document.getElementById('mobileMenu');
 const menuIcon = mobileMenuBtn?.querySelector('.menu-icon');
 const closeIcon = mobileMenuBtn?.querySelector('.close-icon');
+const mobileMenuLabel = mobileMenuBtn?.querySelector('.visually-hidden');
 const mobileLinks = document.querySelectorAll('.nav-link-mobile');
 
 // ===================================
@@ -78,18 +79,33 @@ window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e)
 // MENÚ MÓVIL
 // ===================================
 function toggleMobileMenu() {
+    if (!mobileMenu || !mobileMenuBtn || !menuIcon || !closeIcon) {
+        return;
+    }
+
     const isOpen = mobileMenu.classList.contains('active');
-    
-    if (isOpen) {
-        // Cerrar menú
-        mobileMenu.classList.remove('active');
-        menuIcon.style.display = 'block';
-        closeIcon.style.display = 'none';
-    } else {
-        // Abrir menú
+    const newState = !isOpen;
+
+    if (newState) {
         mobileMenu.classList.add('active');
         menuIcon.style.display = 'none';
         closeIcon.style.display = 'block';
+        mobileMenuBtn.setAttribute('aria-expanded', 'true');
+        mobileMenuBtn.setAttribute('aria-label', 'Cerrar menú');
+        mobileMenuBtn.setAttribute('title', 'Cerrar menú');
+        if (mobileMenuLabel) {
+            mobileMenuLabel.textContent = 'Cerrar menú principal';
+        }
+    } else {
+        mobileMenu.classList.remove('active');
+        menuIcon.style.display = 'block';
+        closeIcon.style.display = 'none';
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.setAttribute('aria-label', 'Abrir menú');
+        mobileMenuBtn.setAttribute('title', 'Abrir menú');
+        if (mobileMenuLabel) {
+            mobileMenuLabel.textContent = 'Abrir menú principal';
+        }
     }
 }
 
@@ -101,9 +117,18 @@ if (mobileMenuBtn) {
 // Cerrar menú cuando se hace clic en un enlace
 mobileLinks.forEach(link => {
     link.addEventListener('click', () => {
+        if (!mobileMenu || !menuIcon || !closeIcon || !mobileMenuBtn) {
+            return;
+        }
         mobileMenu.classList.remove('active');
         menuIcon.style.display = 'block';
         closeIcon.style.display = 'none';
+        mobileMenuBtn.setAttribute('aria-expanded', 'false');
+        mobileMenuBtn.setAttribute('aria-label', 'Abrir menú');
+        mobileMenuBtn.setAttribute('title', 'Abrir menú');
+        if (mobileMenuLabel) {
+            mobileMenuLabel.textContent = 'Abrir menú principal';
+        }
     });
 });
 
