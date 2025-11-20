@@ -320,6 +320,16 @@ ul {
     color: var(--color-mesa-verde);
 }
 
+.moon-icon,
+.close-icon {
+    display: none;
+}
+
+.footer-heart-icon {
+    fill: #000000;
+    opacity: 1;
+}
+
 .nav-mobile {
     display: none;
     padding: 1rem 0;
@@ -584,6 +594,7 @@ ul {
     min-height: 2.5rem;
     display: -webkit-box;
     -webkit-line-clamp: 2;
+    line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
 }
