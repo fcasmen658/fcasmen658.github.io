@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cifrado César</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Cifrado César</h1>
+
+        <div class="form-group">
+            <label for="input-text">Texto de entrada:</label>
+            <textarea id="input-text" rows="4" placeholder="Introduce el texto a cifrar o descifrar..."></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="key">Clave (desplazamiento):</label>
+            <input type="number" id="key" value="3" min="-100" max="100">
+        </div>
+
+        <div class="buttons">
+            <button class="btn-cipher" onclick="cipher()">Cifrar</button>
+            <button class="btn-decipher" onclick="decipher()">Descifrar</button>
+            <button class="btn-copy" onclick="copyResult()">Copiar resultado</button>
+        </div>
+
+        <div class="form-group">
+            <label for="output-text">Resultado:</label>
+            <textarea id="output-text" rows="4" readonly placeholder="El resultado aparecerá aquí..."></textarea>
+        </div>
+
+        <div id="status" class="status"></div>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

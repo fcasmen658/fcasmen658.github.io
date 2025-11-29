@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Actividad 6 - Funciones JavaScript</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>📚 Actividad 6 - Funciones JavaScript</h1>
+            <p>Desarrollo Web en Entorno Cliente - DAW</p>
+            <button class="btn" onclick="ejecutarEjemplos()">🚀 Ejecutar Todos los Ejemplos</button>
+        </header>
+
+        <main class="functions-grid">
+            <!-- FUNCIÓN 1: FACTORIAL -->
+            <div class="function-card">
+                <h3>🔢 Factorial de un Número</h3>
+                <div class="input-group">
+                    <label for="factorialInput">Ingrese un número entero positivo:</label>
+                    <input type="number" id="factorialInput" placeholder="Ej: 5" min="0" step="1">
+                </div>
+                <button class="btn" onclick="calcularFactorial()">Calcular Factorial</button>
+                <button class="btn" onclick="document.getElementById('factorialInput').value='0'; calcularFactorial();">Probar 0!</button>
+                <button class="btn" onclick="document.getElementById('factorialInput').value='10'; calcularFactorial();">Probar 10!</button>
+                <div id="factorialResult" class="result info">
+                    Ingrese un número y haga clic en "Calcular Factorial"
+                </div>
+                <div class="examples">
+                    <h4>💡 Ejemplos de uso:</h4>
+                    <ul>
+                        <li><strong>factorial(5)</strong> = 5 × 4 × 3 × 2 × 1 = 120</li>
+                        <li><strong>factorial(0)</strong> = 1 (por definición)</li>
+                        <li><strong>factorial(1)</strong> = 1</li>
+                        <li><strong>factorial(-5)</strong> = Error (no definido para negativos)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FUNCIÓN 2: MEDIA ARITMÉTICA -->
+            <div class="function-card">
+                <h3>📊 Media Aritmética</h3>
+                <div class="input-group">
+                    <label for="mediaInput">Ingrese números separados por comas, espacios o punto y coma:</label>
+                    <textarea id="mediaInput" rows="3" placeholder="Ej: 10, 20, 30, 40, 50"></textarea>
+                </div>
+                <button class="btn" onclick="calcularMedia()">Calcular Media</button>
+                <button class="btn" onclick="document.getElementById('mediaInput').value='1, 2, 3, 4, 5'; calcularMedia();">Ejemplo Simple</button>
+                <button class="btn" onclick="document.getElementById('mediaInput').value='10.5; 15.2; 8.7; 12.1'; calcularMedia();">Decimales</button>
+                <div id="mediaResult" class="result info">
+                    Ingrese una lista de números y haga clic en "Calcular Media"
+                </div>
+                <div class="examples">
+                    <h4>💡 Ejemplos de uso:</h4>
+                    <ul>
+                        <li><strong>[10, 20, 30]</strong> → Media = (10+20+30)/3 = 20</li>
+                        <li><strong>[1, 2, 3, 4, 5]</strong> → Media = 15/5 = 3</li>
+                        <li><strong>Formatos válidos:</strong> "1,2,3" | "1 2 3" | "1;2;3"</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FUNCIÓN 3: PALÍNDROMO -->
+            <div class="function-card">
+                <h3>🔄 Verificador de Palíndromos</h3>
+                <div class="input-group">
+                    <label for="palindromoInput">Ingrese una frase o palabra:</label>
+                    <textarea id="palindromoInput" rows="3" placeholder='Ej: "La ruta nos aporto otro paso natural"'></textarea>
+                </div>
+                <button class="btn" onclick="verificarPalindromo()">Verificar Palíndromo</button>
+                <button class="btn" onclick="document.getElementById('palindromoInput').value='anita lava la tina'; verificarPalindromo();">Ejemplo Simple</button>
+                <button class="btn" onclick="document.getElementById('palindromoInput').value='La ruta nos aporto otro paso natural'; verificarPalindromo();">Ejemplo Complejo</button>
+                <div id="palindromoResult" class="result info">
+                    Ingrese un texto y haga clic en "Verificar Palíndromo"
+                </div>
+                <div class="examples">
+                    <h4>💡 Ejemplos de palíndromos:</h4>
+                    <ul>
+                        <li><strong>Simples:</strong> "oso", "ana", "aba"</li>
+                        <li><strong>Frases:</strong> "anita lava la tina"</li>
+                        <li><strong>Complejos:</strong> "La ruta nos aportó otro paso natural"</li>
+                        <li><strong>Nota:</strong> Se ignoran espacios, acentos y mayúsculas</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- FUNCIÓN 4: VALIDADOR DNI -->
+            <div class="function-card">
+                <h3>🆔 Validador de DNI Español</h3>
+                <div class="input-group">
+                    <label for="dniInput">Ingrese un DNI (8 dígitos + 1 letra):</label>
+                    <input type="text" id="dniInput" placeholder="Ej: 12345678Z" maxlength="9" style="text-transform: uppercase;">
+                </div>
+                <button class="btn" onclick="validarDNIInput()">Validar DNI</button>
+                <button class="btn" onclick="document.getElementById('dniInput').value='12345678Z'; validarDNIInput();">DNI Válido</button>
+                <button class="btn" onclick="document.getElementById('dniInput').value='12345678A'; validarDNIInput();">DNI Inválido</button>
+                <div id="dniResult" class="result info">
+                    Ingrese un DNI y haga clic en "Validar DNI"
+                </div>
+                <div class="examples">
+                    <h4>💡 Información sobre el DNI español:</h4>
+                    <ul>
+                        <li><strong>Formato:</strong> 8 dígitos + 1 letra (ej: 12345678Z)</li>
+                        <li><strong>Cálculo:</strong> Número ÷ 23, la letra corresponde al resto</li>
+                        <li><strong>Tabla:</strong> TRWAGMYFPDXBNJZSQVHLCKE</li>
+                        <li><strong>Ejemplo:</strong> 12345678 ÷ 23 = resto 14 → letra Z</li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer style="text-align: center; padding: 20px; background: #f8f9fa; color: #6c757d;">
+            <p><strong>Actividad 6 - Funciones JavaScript</strong> | Desarrollo Web en Entorno Cliente</p>
+            <p>Implementado por: <strong>fcasmen658</strong> | GitHub: <a href="https://github.com/fcasmen658/DWEC" target="_blank">DWEC Repository</a></p>
+        </footer>
+    </div>
+
+    <script src="js/funciones.js"></script>
+</body>
+</html>

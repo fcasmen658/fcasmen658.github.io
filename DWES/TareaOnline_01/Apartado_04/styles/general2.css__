@@ -1,0 +1,68 @@
+body {
+    font-family: 'Courier New', Courier, monospace;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    box-sizing: border-box;
+}
+.ticket {
+    background-color: #fff;
+    border: 2px dashed #d41c1c;
+    padding: 25px;
+    width: 100%;
+    max-width: 400px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.1);
+}
+.ticket h2 {
+    text-align: center;
+    color: #d41c1c;
+    margin-top: 0;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 10px;
+}
+.ticket p {
+    margin: 10px 0;
+    word-wrap: break-word;
+}
+.ticket .total {
+    font-weight: bold;
+    font-size: 1.2em;
+    text-align: right;
+    margin-top: 20px;
+    border-top: 2px solid #333;
+    padding-top: 10px;
+}
+.ticket .footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 0.8em;
+    color: #777;
+}
+.volver {
+    text-align: center;
+    margin-top: 20px;
+}
+.volver a {
+    color: #d41c1c;
+    text-decoration: none;
+    padding: 10px 20px;
+    border: 1px solid #d41c1c;
+    border-radius: 3px;
+}
+.volver a:hover {
+    background-color: #d41c1c;
+    color: white;
+}
+.error {
+    color: #d41c1c;
+    font-size: 0.9em;
+    margin-top: 5px;
+    display: block;
+}
+.campo-error {
+    border-color: #d41c1c !important;
+}

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+<meta charset="UTF-8">
+<title>Calificación de Notas</title>
+<link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body>
+    <h2>Introduce tu nota (0 a 10):</h2>
+        <form id="formulario">
+            <label for="nota">Nota:</label>
+            <input type="text" id="nota" name="nota" placeholder="Ej.: 8.5 o 8,5"/>
+            <button type="submit" id="btn_nota">Calificar</button>
+        </form>
+        <div id="mensaje_notas">
+            <p>Aprobado: 4.50 - 6.99</p>
+            <p>Bien: 7.00 - 8.99</p>
+            <p>Notable: 9.00 - 10.00</p>
+            <p>Suspenso: Menos de 4.50</p>
+        </div>
+        <div id="resultado"></div>
+
+    <script src="js/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Verificador de Mayoría de Edad</title>
+  <link rel="stylesheet" href="./css/styles.css">
+</head>
+<body>
+  <main>
+    <h1>Verificador de Mayoría de Edad</h1>
+    
+    <form id="edadForm">
+      <label for="edad">Introduce tu edad:</label>
+      <input 
+        id="edad" 
+        name="edad" 
+        type="numero" 
+        min="0" 
+        max="150" 
+        placeholder="Ej: 25"
+        required
+      >
+      <button type="submit">Verificar</button>
+    </form>
+
+    <div id="resultado" aria-live="polite"></div>
+  </main>
+
+  <script src="./js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Entregas</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Entregas</h1>
+
+        <div class="form-container">
+            <div class="form-group">
+                <label for="description">Descripción de la entrega:</label>
+                <input type="text" id="description" placeholder="Ej: Práctica 2 de DWEC" maxlength="100">
+            </div>
+
+            <div class="form-group">
+                <label for="datetime">Fecha y hora límite:</label>
+                <input type="datetime-local" id="datetime">
+            </div>
+
+            <button id="add-btn" class="btn-add">Añadir Entrega</button>
+        </div>
+
+        <div class="deliveries-list" id="deliveries-list">
+            <div class="list-header">
+                <h2>Entregas Programadas</h2>
+                <button id="clear-btn" class="btn-clear">Vaciar Lista</button>
+            </div>
+            <div id="no-deliveries" class="no-deliveries">
+                No hay entregas programadas. ¡Añade la primera!
+            </div>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mini Panel de Navegador</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div class="panel">
+        <h2>Mini Panel de Información del Navegador</h2>
+
+        <div class="info-item">
+            <span class="info-label">Tamaño de ventana:</span>
+            <span class="info-value" id="viewport-size">Calculando...</span>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">URL actual:</span>
+            <span class="info-value" id="current-url">Cargando...</span>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">Sistema/Navegador:</span>
+            <span class="info-value" id="browser-info">Detectando...</span>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">¿Móvil?:</span>
+            <span class="info-value" id="is-mobile">Verificando...</span>
+        </div>
+
+        <div class="info-item">
+            <span class="info-label">Estado de conexión:</span>
+            <span class="info-value" id="connection-status">Comprobando...</span>
+        </div>
+
+        <div class="buttons">
+            <button class="btn-help" onclick="openHelp()">Abrir ayuda</button>
+            <button class="btn-exit" onclick="exitToYahoo()">Salir</button>
+        </div>
+    </div>
+
+    <script src="js/script.js"></script>
+</body>
+</html>
