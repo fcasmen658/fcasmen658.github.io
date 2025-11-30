@@ -1,4 +1,27 @@
 /* ===================================
+   SKIP LINK - ACCESIBILIDAD
+   =================================== */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 0;
+    background: var(--color-azul-profundo);
+    color: var(--color-blanco-puro);
+    padding: 0.75rem 1.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    z-index: 10000;
+    border-radius: 0 0 0.5rem 0;
+    transition: top 0.3s;
+}
+
+.skip-link:focus {
+    top: 0;
+    outline: 3px solid var(--color-amarillo-brillante);
+    outline-offset: 2px;
+}
+
+/* ===================================
    VARIABLES CSS - LIGHT MODE (DEFAULT)
    =================================== */
 :root {

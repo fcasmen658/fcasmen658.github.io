@@ -13,6 +13,9 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;500;600;700&family=Oswald:wght@300;400;500;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    <!-- Skip Link -->
+    <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+    
     <!-- Header -->
     <header class="header">
         <div class="container">
@@ -25,7 +28,7 @@
                 </div>
 
                 <!-- Desktop Navigation -->
-                <nav class="nav-desktop">
+                <nav class="nav-desktop" aria-label="Navegación principal">
                     <a href="index.html#inicio" class="nav-link">Inicio</a>
                     <a href="index.html#productos" class="nav-link">Productos</a>
                     <a href="index.html#sobre-nosotros" class="nav-link">Sobre Nosotros</a>
@@ -33,12 +36,13 @@
                 </nav>
 
                 <!-- Search Bar -->
-                <form class="search-bar" action="busqueda.html" method="get">
-                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <form class="search-bar" action="busqueda.html" method="get" role="search">
+                    <svg class="search-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                         <circle cx="11" cy="11" r="8"></circle>
                         <path d="m21 21-4.35-4.35"></path>
                     </svg>
-                    <input type="text" name="q" placeholder="Buscar productos..." class="search-input">
+                    <label for="searchInput" class="visually-hidden">Buscar productos</label>
+                    <input type="text" id="searchInput" name="q" placeholder="Buscar productos..." class="search-input" aria-label="Buscar productos">
                 </form>
 
                 <!-- Cart and Mobile Menu -->
@@ -61,8 +65,8 @@
                         </svg>
                     </button>
 
-                    <button class="cart-btn">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <button class="cart-btn" aria-label="Carrito de compras (0 artículos)">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
                             <circle cx="9" cy="21" r="1"></circle>
                             <circle cx="20" cy="21" r="1"></circle>
                             <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
@@ -86,7 +90,7 @@
             </div>
 
             <!-- Mobile Navigation -->
-            <nav class="nav-mobile" id="mobileMenu">
+            <nav class="nav-mobile" id="mobileMenu" aria-label="Navegación móvil">
                 <a href="index.html#inicio" class="nav-link-mobile">Inicio</a>
                 <a href="index.html#productos" class="nav-link-mobile">Productos</a>
                 <a href="index.html#sobre-nosotros" class="nav-link-mobile">Sobre Nosotros</a>
