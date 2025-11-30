@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Portafolio de Francisco Miguel Casas Méndez - Desarrollo de Aplicaciones Web">
+    <link rel="canonical" href="https://fcasmen658.github.io/">
+    <meta name="theme-color" content="#2563eb">
     <link rel="icon" href="favicon.ico" type="image/x-icon">
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon" href="img/logo.png">
@@ -105,6 +107,13 @@
         }
 
         .nav-item:hover .dropdown {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Accesible con teclado */
+        .nav-item:focus-within .dropdown {
             opacity: 1;
             visibility: visible;
             transform: translateY(0);
@@ -403,9 +412,9 @@
         <nav class="container" aria-label="Navegación principal" role="navigation">
             <a href="index.html" class="logo"><img src="img/logo.png" height="150" alt="Logo"></a>
             <ul class="nav-links">
-                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#inicio" aria-current="page">Inicio</a></li>
                 <li class="nav-item">
-                    <a href="#modulos">Módulos</a>
+                    <a href="#modulos" aria-haspopup="true">Módulos</a>
                     <div class="dropdown">
                         <a href="BBDD.html">Bases de Datos</a>
                         <a href="DAW.html">Despliegue de Aplicaciones Web</a>
