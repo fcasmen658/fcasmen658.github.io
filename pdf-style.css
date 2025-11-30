@@ -1,0 +1,83 @@
+/* Estilos para exportación PDF del análisis de accesibilidad */
+@page {
+  size: A4;
+  margin: 22mm 18mm 22mm 18mm;
+}
+
+body {
+  font-family: "Segoe UI", "Atkinson Hyperlegible", Arial, sans-serif;
+  font-size: 11.5pt;
+  line-height: 1.5;
+  color: #1e293b;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+  line-height: 1.25;
+  page-break-after: avoid;
+  color: #0f172a;
+}
+
+h1 { font-size: 28pt; border-bottom: 3px solid #2563eb; padding-bottom: 6px; margin-top: 0; }
+h2 { font-size: 20pt; border-left: 6px solid #2563eb; padding-left: 10px; margin-top: 32px; }
+h3 { font-size: 15pt; color: #2563eb; margin-top: 24px; }
+h4 { font-size: 13pt; color: #334155; margin-top: 18px; }
+
+p, ul, ol { widows: 3; orphans: 3; }
+
+ul, ol { margin: 6px 0 16px 26px; }
+li { margin-bottom: 4px; }
+
+code, pre { font-family: "Consolas", "Courier New", monospace; font-size: 10pt; }
+pre { background: #f1f5f9; border: 1px solid #cbd5e1; padding: 10px 14px; border-radius: 6px; page-break-inside: avoid; }
+code { background: #f8fafc; padding: 2px 5px; border: 1px solid #e2e8f0; border-radius: 4px; }
+
+/* Tablas accesibles */
+table { width: 100%; border-collapse: collapse; margin: 12px 0 24px; font-size: 10.5pt; }
+th, td { border: 1px solid #94a3b8; padding: 6px 8px; vertical-align: top; }
+th { background: #2563eb; color: #ffffff; font-weight: 600; }
+tbody tr:nth-child(even) { background: #f1f5f9; }
+table caption { caption-side: top; font-weight: 600; margin-bottom: 4px; }
+
+blockquote { border-left: 4px solid #2563eb; background: #f1f5f9; padding: 8px 14px; margin: 14px 0; color: #334155; }
+
+hr { border: none; border-top: 2px solid #2563eb; margin: 40px 0 30px; }
+
+/* Resaltado de etiquetas clave */
+strong { color: #0f172a; }
+mark { background: #fde68a; padding: 2px 4px; border-radius: 4px; }
+
+/* Listas de verificación */
+ul li:has(input[type=checkbox]) { list-style: none; }
+input[type=checkbox] { transform: scale(1.1); margin-right: 6px; }
+
+/* Secciones especiales */
+.section-summary { background: #eff6ff; border: 1px solid #93c5fd; padding: 12px 16px; border-radius: 6px; margin: 24px 0; }
+.section-summary h3 { margin-top: 0; }
+
+/* Evitar cortes incómodos */
+.table, table, pre, blockquote { page-break-inside: avoid; }
+
+/* Encabezado y pie (simples para PDF) */
+@page {
+  @top-left { content: "Análisis Accesibilidad"; }
+  @top-right { content: "Francisco M. Casas"; }
+  @bottom-right { content: "Página " counter(page) " de " counter(pages); }
+}
+
+/* Ajustes responsivos ignorados en PDF pero mantenidos para consistencia */
+img { max-width: 100%; height: auto; page-break-inside: avoid; }
+
+/* Indicadores visuales de fragmentos */
+.code-title { font-size: 9pt; font-weight: 600; text-transform: uppercase; letter-spacing: .5px; color: #475569; margin: 8px 0 4px; }
+
+/* Mejor legibilidad en densidad de información */
+.table-tight th, .table-tight td { padding: 4px 6px; }
+
+/* Cajas destacadas */
+.callout-info { border-left: 5px solid #0ea5e9; background: #f0f9ff; padding: 10px 14px; margin: 16px 0; }
+.callout-warning { border-left: 5px solid #f59e0b; background: #fffbeb; padding: 10px 14px; margin: 16px 0; }
+.callout-success { border-left: 5px solid #10b981; background: #ecfdf5; padding: 10px 14px; margin: 16px 0; }
+
+/* Evitar bordes recortados en última página */
+body:after { content: ""; display: block; height: 12px; }
