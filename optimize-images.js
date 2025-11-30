@@ -7,7 +7,8 @@ const path = require('path');
 const images = [
   'DIW/TareaOnline_03/images/tacos.jpeg',
   'DIW/TareaOnline_03/images/mesas.png',
-  'DIW/TareaOnline_03/images/hero.jpg'
+  'DIW/TareaOnline_03/images/hero.jpg',
+  'DIW/TareaOnline_03/images/mesa_img.jpg'
 ];
 
 console.log('Para convertir a WebP necesitas instalar sharp:');
