@@ -620,8 +620,6 @@
 | LCP | 1.2s | 3.7s (↓20%) | ✅ / ⚠️ |
 | Speed Index | 1.2s | 3.4s | ✅ / ✅ |
 | TBT | 0ms | 0ms | ✅ / ✅ |
-| Accesibilidad | - | - | Verificar con Wave |
-| SEO | - | - | Pendiente optimización |
 
 **Leyenda:** ✅ Bueno | ⚠️ Mejorable | ❌ Necesita atención
 
