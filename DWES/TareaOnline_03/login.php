@@ -191,7 +191,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
     <div class="login-container">
         <img src="img/logo.png" alt="Logo UD Almería" style="display: block; margin: 0 auto 20px; max-width: 150px;">
-        <h1>🔐 Acceso Encargado</h1>
+        <h1>Acceso Encargado</h1>
         <p class="subtitle">Sistema de Gestión de Abonos</p>
         
         <?php if (!empty($mensaje_error)): ?>
@@ -231,7 +231,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </form>
         
         <div class="volver-inicio">
-            <a href="compra_abono.php">← Volver a compra de abonos</a>
+            <a href="compra_abono.php">&larr; Volver a compra de abonos</a>
         </div>
     </div>
 </body>

@@ -19,7 +19,7 @@ try {
     ";
     
     $pdo->exec($sql_create_table);
-    echo "✓ Tabla 'usuarios' creada correctamente.<br>";
+    echo "[OK] Tabla 'usuarios' creada correctamente.<br>";
     
     // Comprobar si ya existe el usuario 'uda'
     $stmt = $pdo->prepare("SELECT COUNT(*) as total FROM usuarios WHERE username = :username");
@@ -27,7 +27,7 @@ try {
     $resultado = $stmt->fetch(PDO::FETCH_ASSOC);
     
     if ($resultado['total'] > 0) {
-        echo "⚠ El usuario 'uda' ya existe en la base de datos.<br>";
+        echo "[AVISO] El usuario 'uda' ya existe en la base de datos.<br>";
     } else {
         // Generar UUID v4 para el usuario
         $id = sprintf('%04x%04x-%04x-%04x-%04x-%04x%04x%04x',
@@ -49,15 +49,15 @@ try {
             ':password' => $password_encriptada
         ]);
         
-        echo "✓ Usuario encargado 'uda' creado correctamente.<br>";
+        echo "[OK] Usuario encargado 'uda' creado correctamente.<br>";
         echo "  - Username: uda<br>";
         echo "  - Password: 1234 (encriptada)<br>";
     }
     
-    echo "<br><strong>✓ Inicialización completada exitosamente.</strong><br>";
+    echo "<br><strong>[OK] Inicialización completada exitosamente.</strong><br>";
     echo "<br><a href='login.php'>Ir al login</a>";
     
 } catch (PDOException $e) {
-    echo "✗ Error al inicializar la base de datos: " . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
+    echo "[ERROR] Error al inicializar la base de datos: " . htmlspecialchars($e->getMessage(), ENT_QUOTES, 'UTF-8');
 }
 ?>

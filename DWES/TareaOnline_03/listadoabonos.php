@@ -146,11 +146,11 @@ function obtenerIconoTipo($tipo_nombre) {
     
     // Asignar icono según el tipo de abono
     if (strpos($tipo, 'tribuna') !== false) {
-        return ['🥇', 'oro', 'Tribuna'];
+        return ['T', 'oro', 'Tribuna'];
     } elseif (strpos($tipo, 'preferencia') !== false) {
-        return ['🥈', 'plata', 'Preferencia'];
+        return ['P', 'plata', 'Preferencia'];
     } else {
-        return ['🥉', 'bronce', 'Fondo'];
+        return ['F', 'bronce', 'Fondo'];
     }
 }
 
@@ -482,22 +482,22 @@ function obtenerTarifaEspecial($edad) {
     <?php if (!$acceso_permitido): ?>
         <!-- Mensaje de Acceso Denegado -->
         <div class="acceso-denegado">
-            <div class="icono">🔒</div>
+            <div class="icono">&times;</div>
             <h2>Acceso Denegado</h2>
             <p><?php echo htmlspecialchars($mensaje_acceso_denegado, ENT_QUOTES, 'UTF-8'); ?></p>
             <p style="font-size: 0.95em; color: #999;">
                 Para ver el listado de abonos vendidos debe autenticarse como encargado de la empresa.
             </p>
-            <a href="login.php" class="btn-login">🔐 Ir al Login</a>
+            <a href="login.php" class="btn-login">Ir al Login</a>
         </div>
     <?php else: ?>
         <!-- Contenido protegido - Solo visible si está autenticado -->
         <div class="header">
-            <h1>📋 Listado de Abonos</h1>
+            <h1>Listado de Abonos</h1>
             <p>UD Almería - Sistema de Gestión de Abonos</p>
             <div class="usuario-info">
-                <span>👤 Usuario: <strong><?php echo htmlspecialchars($_SESSION['usuario_username'], ENT_QUOTES, 'UTF-8'); ?></strong></span>
-                <a href="logout.php" class="btn-logout">🚪 Cerrar Sesión</a>
+                <span>Usuario: <strong><?php echo htmlspecialchars($_SESSION['usuario_username'], ENT_QUOTES, 'UTF-8'); ?></strong></span>
+                <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
             </div>
         </div>
 
@@ -539,12 +539,12 @@ function obtenerTarifaEspecial($edad) {
                         <td class="abonado-info"><?php echo htmlspecialchars($abono['abonado']); ?></td>
                         <td style="text-align: center;">
                             <span class="icon-button" title="<?php echo htmlspecialchars($abono['telefono']); ?>">
-                                ☎️
+                                Tel.
                             </span>
                         </td>
                         <td style="text-align: center;">
                             <span class="icon-button" title="<?php echo htmlspecialchars($abono['cuenta_bancaria']); ?>">
-                                🏦
+                                IBAN
                             </span>
                         </td>
                         <td>
@@ -567,7 +567,7 @@ function obtenerTarifaEspecial($edad) {
     <?php endif; ?>
 
         <div class="volver">
-            <a href="compra_abono.php">← Volver al formulario de compra</a>
+            <a href="compra_abono.php">&larr; Volver al formulario de compra</a>
         </div>
     <?php endif; ?>
 </div>

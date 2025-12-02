@@ -752,39 +752,39 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     <!-- Mostrar ticket de compra -->
     <div class="ticket">
         <div class="ticket-content">
-        <h2>🎫 Ticket de Compra</h2>
+        <h2>Ticket de Compra</h2>
         <p><strong>Fecha de compra:</strong> <?php echo htmlspecialchars($datos['fecha_compra'] ?? ''); ?></p>
         <p><strong>Abonado:</strong> <?php echo htmlspecialchars($datos['abonado'] ?? ''); ?> - <?php echo htmlspecialchars($datos['dni'] ?? ''); ?></p>
         <p><strong>Teléfono:</strong> <?php echo htmlspecialchars($datos['telefono'] ?? ''); ?></p>
         <p><strong>Tipo de Abono:</strong> <?php echo htmlspecialchars($datos['tipo_abono'] ?? ''); ?></p>
         
         <div class="asiento">
-            <strong>🪑 Asiento Asignado:</strong><br>
+            <strong>Asiento Asignado:</strong><br>
             <?php echo htmlspecialchars($datos['codigo_asiento'] ?? ''); ?>
         </div>
         
         <div class="precio-section">
-            <p class="total">💰 Total a pagar: <?php echo isset($datos['precio_final']) ? number_format($datos['precio_final'], 2) : '0.00'; ?>€</p>
+            <p class="total">Total a pagar: <?php echo isset($datos['precio_final']) ? number_format($datos['precio_final'], 2) : '0.00'; ?>€</p>
             <?php if (isset($datos['tarifa_especial']) && $datos['tarifa_especial']): ?>
-                <p class="descuento">✅ Tarifa especial aplicada</p>
+                <p class="descuento">[OK] Tarifa especial aplicada</p>
             <?php endif; ?>
         </div>
         
-        <p><strong>Términos:</strong> Aceptados ✓</p>
+        <p><strong>Términos:</strong> Aceptados</p>
         
         <div class="footer">
-            <p>🏟️ ¡Gracias por tu apoyo al UD Almería!</p>
+            <p>Gracias por tu apoyo al UD Almería</p>
             <p>Presenta este ticket el día del partido</p>
         </div>
         
         <div class="volver">
-            <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8'); ?>">← Realizar otra compra</a>
+            <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8'); ?>">&larr; Realizar otra compra</a>
         </div>
         </div>
     </div>
 
     <!-- Botón flotante para ver listado -->
-    <a href="listadoabonos.php" class="btn-listado">📋 Ver Listado de Abonos</a>
+    <a href="listadoabonos.php" class="btn-listado">Ver Listado de Abonos</a>
 
 <?php else: ?>
     <!-- Mostrar formulario -->
@@ -891,12 +891,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 <?php endif; ?>
             </div>
 
-            <button type="submit">🛒 Comprar Abono</button>
+            <button type="submit">Comprar Abono</button>
         </form>
     </div>
 
     <!-- Botón flotante para ver listado -->
-    <a href="listadoabonos.php" class="btn-listado">📋 Ver Listado de Abonos</a>
+    <a href="listadoabonos.php" class="btn-listado">Ver Listado de Abonos</a>
 
 <?php endif; ?>
 
