@@ -146,11 +146,11 @@ function obtenerIconoTipo($tipo_nombre) {
     
     // Asignar icono según el tipo de abono
     if (strpos($tipo, 'tribuna') !== false) {
-        return ['T', 'oro', 'Tribuna'];
+        return ['<span style="color: #FFD700; font-size: 1.8em;">&#x1F947;</span>', 'oro', 'Tribuna'];
     } elseif (strpos($tipo, 'preferencia') !== false) {
-        return ['P', 'plata', 'Preferencia'];
+        return ['<span style="color: #C0C0C0; font-size: 1.8em;">&#x1F948;</span>', 'plata', 'Preferencia'];
     } else {
-        return ['F', 'bronce', 'Fondo'];
+        return ['<span style="color: #CD7F32; font-size: 1.8em;">&#x1F949;</span>', 'bronce', 'Fondo'];
     }
 }
 
@@ -539,12 +539,12 @@ function obtenerTarifaEspecial($edad) {
                         <td class="abonado-info"><?php echo htmlspecialchars($abono['abonado']); ?></td>
                         <td style="text-align: center;">
                             <span class="icon-button" title="<?php echo htmlspecialchars($abono['telefono']); ?>">
-                                Tel.
+                                <span style="font-size: 1.3em;">&#x1F4DE;</span>
                             </span>
                         </td>
                         <td style="text-align: center;">
                             <span class="icon-button" title="<?php echo htmlspecialchars($abono['cuenta_bancaria']); ?>">
-                                IBAN
+                                <span style="font-size: 1.3em;">&#x1F3E6;</span>
                             </span>
                         </td>
                         <td>
