@@ -32,6 +32,18 @@ $mostrar_ticket = false;
 require_once __DIR__ . '/conexionbd.php'; // define $pdo
 
 // ============================================================================
+// PRECARGA DE DATOS DESDE COOKIES (para agilizar futuras compras)
+// ============================================================================
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    // Precargar desde cookies si existen
+    $datos['nombre'] = $_COOKIE['abonado_nombre'] ?? '';
+    $datos['dni'] = $_COOKIE['abonado_dni'] ?? '';
+    $datos['fecha_nacimiento'] = $_COOKIE['abonado_fecha_nacimiento'] ?? '';
+    $datos['telefono'] = $_COOKIE['abonado_telefono'] ?? '';
+    $datos['cuenta_bancaria'] = $_COOKIE['abonado_cuenta_bancaria'] ?? '';
+}
+
+// ============================================================================
 // CARGAR TIPOS DE ABONO DESDE LA BASE DE DATOS
 // ============================================================================
 
@@ -272,6 +284,42 @@ function calcularPrecioFinal($precio_base, $edad) {
     
     // Retornar array con precio final y descripción del descuento
     return [$precio_final, $descuento_aplicado];
+}
+
+/**
+ * Función: guardarCookiesDatos
+ * Descripción: Guarda en cookies los datos principales del abonado para precargar futuras compras.
+ * Campos: nombre, dni, fecha_nacimiento, telefono, cuenta_bancaria
+ */
+function guardarCookiesDatos(array $datos) {
+    // 180 días de duración
+    $expira = time() + 60 * 60 * 24 * 30; // Tiempo de expiración de la cookie, por ahora y hasta nueva indicación lo dejo en 30 días
+    $path = dirname($_SERVER['PHP_SELF']) ?: '/';
+    $secure = !empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off';
+    $options = [
+        'expires' => $expira,
+        'path' => $path,
+        'secure' => $secure,
+        'httponly' => true,
+        'samesite' => 'Lax'
+    ];
+
+    // Guardar cada campo si está presente
+    if (isset($datos['nombre'])) {
+        setcookie('abonado_nombre', (string)$datos['nombre'], $options);
+    }
+    if (isset($datos['dni'])) {
+        setcookie('abonado_dni', (string)$datos['dni'], $options);
+    }
+    if (isset($datos['fecha_nacimiento'])) {
+        setcookie('abonado_fecha_nacimiento', (string)$datos['fecha_nacimiento'], $options);
+    }
+    if (isset($datos['telefono'])) {
+        setcookie('abonado_telefono', (string)$datos['telefono'], $options);
+    }
+    if (isset($datos['cuenta_bancaria'])) {
+        setcookie('abonado_cuenta_bancaria', (string)$datos['cuenta_bancaria'], $options);
+    }
 }
 
 /**
@@ -531,6 +579,9 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                         ':precio' => $precio_final,
                     ]);
 
+                    // Guardar cookies con los datos para futuras compras
+                    guardarCookiesDatos($datos);
+
                     // Preparar datos para mostrar ticket
                     $mostrar_ticket = true;
                     $datos['fecha_compra'] = $fechaCompra->format('d/m/Y H:i:s');
@@ -727,7 +778,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
         
         <div class="volver">
-            <a href="<?php echo $_SERVER['PHP_SELF']; ?>">← Realizar otra compra</a>
+            <a href="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8'); ?>">← Realizar otra compra</a>
         </div>
         </div>
     </div>
@@ -751,13 +802,13 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             <strong>Por favor, corrija los siguientes errores:</strong>
             <ul>
                 <?php foreach ($errores as $error): ?>
-                <li><?php echo $error; ?></li>
+                <li><?php echo htmlspecialchars($error, ENT_QUOTES, 'UTF-8'); ?></li>
                 <?php endforeach; ?>
             </ul>
         </div>
         <?php endif; ?>
 
-        <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER['PHP_SELF'], ENT_QUOTES, 'UTF-8'); ?>">
             <label for="nombre">Nombre y apellidos:</label>
             <input type="text" 
                 id="nombre" 
@@ -841,7 +892,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
             </div>
 
             <button type="submit">🛒 Comprar Abono</button>
-            </button>
         </form>
     </div>
 

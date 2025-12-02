@@ -8,24 +8,95 @@
  * - Incluir iconos y tooltips para mejor usabilidad
  * - Mostrar estadísticas totales (cantidad y recaudación)
  * Requiere: config.php, conexionbd.php
+ * PROTEGIDO: Requiere autenticación de usuario
  */
+
+// ============================================================================
+// PROTECCIÓN DE ACCESO - VERIFICACIÓN DE SESIÓN
+// ============================================================================
+
+// Configuración de seguridad de sesión
+ini_set('session.cookie_httponly', 1);
+ini_set('session.use_only_cookies', 1);
+ini_set('session.cookie_secure', 0); // Cambiar a 1 si se usa HTTPS
+
+// Iniciar sesión
+session_start();
+
+// Variable para controlar si el usuario tiene acceso
+$acceso_permitido = false;
+$mensaje_acceso_denegado = '';
+
+// Verificar si el usuario está autenticado
+if (!isset($_SESSION['usuario_autenticado']) || $_SESSION['usuario_autenticado'] !== true) {
+    // Acceso denegado - no hay sesión válida
+    $acceso_permitido = false;
+    $mensaje_acceso_denegado = 'Acceso denegado. No tiene permiso para acceder a esta información.';
+} else {
+    // Verificaciones adicionales de seguridad
+    
+    // 1. Verificar que existe el ID de usuario en la sesión
+    if (!isset($_SESSION['usuario_id']) || empty($_SESSION['usuario_id'])) {
+        $acceso_permitido = false;
+        $mensaje_acceso_denegado = 'Sesión inválida. Por favor, inicie sesión nuevamente.';
+        // Destruir sesión corrupta
+        session_destroy();
+    }
+    // 2. Verificar que existe el username en la sesión
+    elseif (!isset($_SESSION['usuario_username']) || empty($_SESSION['usuario_username'])) {
+        $acceso_permitido = false;
+        $mensaje_acceso_denegado = 'Sesión inválida. Por favor, inicie sesión nuevamente.';
+        // Destruir sesión corrupta
+        session_destroy();
+    }
+    // 3. Verificación de tiempo de inactividad (30 minutos)
+    elseif (isset($_SESSION['ultimo_acceso']) && (time() - $_SESSION['ultimo_acceso'] > 1800)) {
+        $acceso_permitido = false;
+        $mensaje_acceso_denegado = 'Su sesión ha expirado por inactividad. Por favor, inicie sesión nuevamente.';
+        // Destruir sesión expirada
+        session_destroy();
+    }
+    // 4. Verificación de IP (protección contra secuestro de sesión)
+    elseif (isset($_SESSION['ip_usuario']) && $_SESSION['ip_usuario'] !== $_SERVER['REMOTE_ADDR']) {
+        $acceso_permitido = false;
+        $mensaje_acceso_denegado = 'Sesión inválida detectada. Por favor, inicie sesión nuevamente.';
+        // Destruir sesión comprometida
+        session_destroy();
+    }
+    // 5. Verificación de User Agent (protección adicional)
+    elseif (isset($_SESSION['user_agent']) && $_SESSION['user_agent'] !== $_SERVER['HTTP_USER_AGENT']) {
+        $acceso_permitido = false;
+        $mensaje_acceso_denegado = 'Sesión inválida detectada. Por favor, inicie sesión nuevamente.';
+        // Destruir sesión comprometida
+        session_destroy();
+    }
+    // Todas las verificaciones pasadas
+    else {
+        $acceso_permitido = true;
+        // Actualizar tiempo de último acceso
+        $_SESSION['ultimo_acceso'] = time();
+    }
+}
 
 // ============================================================================
 // INCLUSIÓN DE ARCHIVOS DE CONFIGURACIÓN Y CONEXIÓN
 // ============================================================================
 
-// Incluir el archivo de conexión a la base de datos (que a su vez incluye config.php)
-require_once __DIR__ . '/conexionbd.php'; // define $pdo
-
-// ============================================================================
-// OBTENER LISTADO DE ABONOS DE LA BASE DE DATOS
-// ============================================================================
-
-// Variable para almacenar mensaje de error si ocurre alguno
+// Variables para datos
+$abonos = [];
 $error = null;
 
-// Obtener todos los abonos ordenados por asiento descendente (Z a A)
-try {
+// Solo cargar datos si el acceso está permitido
+if ($acceso_permitido) {
+    // Incluir el archivo de conexión a la base de datos (que a su vez incluye config.php)
+    require_once __DIR__ . '/conexionbd.php'; // define $pdo
+
+    // ============================================================================
+    // OBTENER LISTADO DE ABONOS DE LA BASE DE DATOS
+    // ============================================================================
+
+    // Obtener todos los abonos ordenados por asiento descendente (Z a A)
+    try {
     /**
      * Consulta JOIN para obtener datos de abonos y sus tipos asociados
      * SELECT: Campos de la tabla abonos y el nombre del tipo de la tabla tipo_abonos
@@ -53,10 +124,11 @@ try {
     // Obtener todos los resultados como array asociativo
     $abonos = $stmt->fetchAll(PDO::FETCH_ASSOC);
 } catch (Exception $e) {
-    // En caso de error, inicializar array vacío y guardar el mensaje de error
-    $abonos = [];
-    $error = "Error al obtener los abonos: " . $e->getMessage();
-}
+        // En caso de error, inicializar array vacío y guardar el mensaje de error
+        $abonos = [];
+        $error = "Error al obtener los abonos: " . $e->getMessage();
+    }
+} // Fin del if ($acceso_permitido)
 
 // ============================================================================
 // FUNCIONES AUXILIARES
@@ -327,15 +399,107 @@ function obtenerTarifaEspecial($edad) {
             color: #999;
             font-size: 1.1em;
         }
+
+        .usuario-info {
+            background: #f8f9fa;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .usuario-info span {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        .btn-logout {
+            background: #d41c1c;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .btn-logout:hover {
+            background: #b01515;
+        }
+
+        .acceso-denegado {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: 100px auto;
+        }
+
+        .acceso-denegado .icono {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+
+        .acceso-denegado h2 {
+            color: #d41c1c;
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .acceso-denegado p {
+            color: #666;
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        .acceso-denegado .btn-login {
+            display: inline-block;
+            background: #d41c1c;
+            color: white;
+            padding: 15px 40px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+        }
+
+        .acceso-denegado .btn-login:hover {
+            background: #b01515;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <div class="header">
-        <h1>📋 Listado de Abonos</h1>
-        <p>UD Almería - Sistema de Gestión de Abonos</p>
-    </div>
+    <?php if (!$acceso_permitido): ?>
+        <!-- Mensaje de Acceso Denegado -->
+        <div class="acceso-denegado">
+            <div class="icono">🔒</div>
+            <h2>Acceso Denegado</h2>
+            <p><?php echo htmlspecialchars($mensaje_acceso_denegado, ENT_QUOTES, 'UTF-8'); ?></p>
+            <p style="font-size: 0.95em; color: #999;">
+                Para ver el listado de abonos vendidos debe autenticarse como encargado de la empresa.
+            </p>
+            <a href="login.php" class="btn-login">🔐 Ir al Login</a>
+        </div>
+    <?php else: ?>
+        <!-- Contenido protegido - Solo visible si está autenticado -->
+        <div class="header">
+            <h1>📋 Listado de Abonos</h1>
+            <p>UD Almería - Sistema de Gestión de Abonos</p>
+            <div class="usuario-info">
+                <span>👤 Usuario: <strong><?php echo htmlspecialchars($_SESSION['usuario_username'], ENT_QUOTES, 'UTF-8'); ?></strong></span>
+                <a href="logout.php" class="btn-logout">🚪 Cerrar Sesión</a>
+            </div>
+        </div>
 
     <?php if (isset($error)): ?>
         <div class="error">
@@ -402,9 +566,10 @@ function obtenerTarifaEspecial($edad) {
         </div>
     <?php endif; ?>
 
-    <div class="volver">
-        <a href="compra_abono.php">← Volver al formulario de compra</a>
-    </div>
+        <div class="volver">
+            <a href="compra_abono.php">← Volver al formulario de compra</a>
+        </div>
+    <?php endif; ?>
 </div>
 
 </body>

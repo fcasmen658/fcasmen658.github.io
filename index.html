@@ -646,6 +646,10 @@
         <div class="container">
             <p>&copy; 2025 Francisco Miguel Casas Méndez</p>
             <p>DAW | Desarrollo de Aplicaciones Web</p>
+            <!-- Enlace solo para entorno local (no visible en GitHub Pages) -->
+            <p id="dev-local-link" style="display:none; margin-top:8px; font-size:0.9rem;">
+                <a href="/php/info.php" rel="nofollow">🔧 PHP info (solo local)</a>
+            </p>
             <div class="social-links">
                 <a href="https://github.com/fcasmen658" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
                     <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
@@ -655,5 +659,16 @@
             </div>
         </div>
     </footer>
+    <script>
+    (function(){
+        try {
+            var host = location.hostname;
+            if (host === 'localhost' || host === '127.0.0.1') {
+                var el = document.getElementById('dev-local-link');
+                if (el) el.style.display = 'block';
+            }
+        } catch (e) { /* no-op */ }
+    })();
+    </script>
 </body>
 </html>
