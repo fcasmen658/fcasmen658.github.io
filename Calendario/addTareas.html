@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Añadir Tareas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container add-task-form">
+        <h2>Añadir Tarea</h2>
+        <form id="addTaskForm">
+            <label for="date">Fecha</label>
+            <input type="date" id="date" name="date" required>
+
+            <label for="task">Tarea</label>
+            <textarea id="task" name="task" rows="3" required></textarea>
+
+            <button type="submit" class="print-button" id="addBtn">Añadir Tarea</button>
+            <button type="button" class="print-button" id="editBtn">Editar Tarea</button>
+            <button type="button" class="print-button" id="deleteBtn">Eliminar Tarea</button>
+        </form>
+        <div id="taskList"></div>
+        <div class="success-message" id="successMsg">¡Tarea añadida correctamente!</div>
+        <div class="error-message" id="errorMsg"></div>
+        <button class="print-button volver-btn" onclick="window.location.href='index.html'">← Volver al calendario</button>
+    </div>
+    <script src="js/addTarea.js"></script>
+</body>
+</html>

@@ -14,12 +14,10 @@ Tarea Online 03 centrada en el desarrollo de funcionalidades JavaScript modernas
 
 ## 🗂️ Estructura del Proyecto
 
-```
 TareaOnline_03/
 ├── README.md
 ├── funcionesTrabajoArray.mjs
 └── test_funcionesTrabajoArray.mjs
-```
 
 ---
 
@@ -32,42 +30,42 @@ TareaOnline_03/
 Módulo que contiene funciones para trabajar con arrays numéricos:
 
 **1. `numeroMasAlto(array)`**
-- Devuelve el valor más alto contenido en el array
-- Utiliza el operador spread (`...`) con `Math.max()`
-- Lanza error si el array está vacío
+Devuelve el valor más alto contenido en el array
+Utiliza el operador spread (`...`) con `Math.max()`
+Lanza error si el array está vacío
 
 **2. `numeroImpares(array)`**
-- Devuelve la cantidad de números impares en el array
-- Utiliza `filter()` para contar impares (num % 2 !== 0)
-- Retorna 0 si el array está vacío
+Devuelve la cantidad de números impares en el array
+Utiliza `filter()` para contar impares (num % 2 !== 0)
+Retorna 0 si el array está vacío
 
 **3. `mediaAritmetica(array)`**
-- Devuelve la media aritmética de los números
-- Utiliza `reduce()` para sumar todos los elementos
-- Divide la suma entre la longitud del array
-- Lanza error si el array está vacío
+Devuelve la media aritmética de los números
+Utiliza `reduce()` para sumar todos los elementos
+Divide la suma entre la longitud del array
+Lanza error si el array está vacío
 
 **4. `moda(array)`**
-- Devuelve el número que más se repite (moda estadística)
-- Utiliza un objeto para contar frecuencias con `reduce()`
-- Usa `Object.entries()` para iterar sobre las frecuencias
-- Si hay empate, devuelve el primero encontrado
-- Lanza error si el array está vacío
+Devuelve el número que más se repite (moda estadística)
+Utiliza un objeto para contar frecuencias con `reduce()`
+Usa `Object.entries()` para iterar sobre las frecuencias
+Si hay empate, devuelve el primero encontrado
+Lanza error si el array está vacío
 
 **5. `numeroPrimos(array)`**
-- Devuelve la cantidad de números primos en el array
-- Incluye función auxiliar `esPrimo()` para verificar primalidad
-- Algoritmo optimizado: verifica solo hasta la raíz cuadrada
-- Utiliza `filter()` para contar números primos
-- Retorna 0 si el array está vacío
+Devuelve la cantidad de números primos en el array
+Incluye función auxiliar `esPrimo()` para verificar primalidad
+Algoritmo optimizado: verifica solo hasta la raíz cuadrada
+Utiliza `filter()` para contar números primos
+Retorna 0 si el array está vacío
 
-#### Características técnicas:
-- ✅ Formato ES Modules (`.mjs`)
-- ✅ Uso de `export` para exportar funciones
-- ✅ Documentación JSDoc completa
-- ✅ Validación de parámetros
-- ✅ Manejo de casos extremos (arrays vacíos)
-- ✅ Uso de funcionalidades ES6+: arrow functions, spread operator, `reduce()`, `filter()`, template literals
+### Características técnicas:
+✅ Formato ES Modules (`.mjs`)
+✅ Uso de `export` para exportar funciones
+✅ Documentación JSDoc completa
+✅ Validación de parámetros
+✅ Manejo de casos extremos (arrays vacíos)
+✅ Uso de funcionalidades ES6+: arrow functions, spread operator, `reduce()`, `filter()`, template literals
 
 ---
 

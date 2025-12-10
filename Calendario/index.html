@@ -1,37 +1,47 @@
+<!-- index.html: Página principal del calendario. Estructura HTML y enlaces a CSS y JS. -->
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Calendario Mensual España 2026 - Fases Lunares</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <title>Calendario Mensual España 2026 - Fases Lunares</title> <!-- Título de la página -->
+    <link rel="stylesheet" href="css/styles.css"> <!-- Enlace a hoja de estilos -->
 </head>
 <body>
+    <!-- Contenedor principal del calendario -->
     <div class="container">
         <div class="header">
+                        <div class="header-actions">
+                <button onclick="window.print()" class="print-button">🖨️ Imprimir</button>
+                <button onclick="window.location.href='addTareas.html'" class="print-button add-task-btn">➕ Añadir Tarea</button>
+                <button onclick="window.location.href='listaTareas.html'" class="print-button task-list-btn">📋 Ver Tareas</button>
+            </div>
             <h1>📅 Calendario 2026 España</h1>
             <p>Fases Lunares • Festivos Nacionales • Onomástica</p>
             <div class="controls">
-                <button onclick="previousMonth()">← Mes Anterior</button>
+                <button class="month-nav left" onclick="previousMonth()">← Mes Anterior</button>
                 <div class="month-year" id="monthYear"></div>
-                <button onclick="nextMonth()">Mes Siguiente →</button>
-                <button onclick="window.print()" class="print-button">🖨️ Imprimir</button>
+                <button class="month-nav right" onclick="nextMonth()">Mes Siguiente →</button>
             </div>
         </div>
 
+        <!-- Sección principal del calendario -->
         <div class="calendar-section">
-            <table class="calendar" id="calendar"></table>
+            <div class="calendar-wrapper">
+                <table class="calendar" id="calendar"></table>
+            </div>
+            <!-- Leyenda de símbolos y colores -->
             <div class="legend">
                 <div class="legend-item">
                     <div class="legend-icon legend-festivo"></div>
                     <span>Festivo Nacional</span>
                 </div>
                 <div class="legend-item">
-                    <div class="legend-icon" style="background: #e3f2fd; border-left: 4px solid #2196f3;"></div>
+                    <div class="legend-icon legend-andaluz"></div>
                     <span>Festivo Andaluz</span>
                 </div>
                 <div class="legend-item">
-                    <div class="legend-icon" style="background: #f3e5f5; border-left: 4px solid #9c27b0;"></div>
+                    <div class="legend-icon legend-almeriense"></div>
                     <span>Festivo Almeriense</span>
                 </div>
                 <div class="legend-item">
@@ -45,6 +55,6 @@
         </div>
     </div>
 
-    <script src="js/calendar.js"></script>
+    <script src="js/calendar.js"></script> <!-- Enlace al script principal del calendario -->
 </body>
 </html>

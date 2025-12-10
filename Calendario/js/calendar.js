@@ -1,10 +1,58 @@
-let currentMonth = new Date().getMonth();
-let currentYear = new Date().getFullYear();
+// calendar.js: Lógica principal para el funcionamiento del calendario.
 
+// Variables globales para el mes y año actual
+// (Declaradas arriba con JSDoc)
 // Festivos - Se cargarán dinámicamente desde la API
-let festivos = {};
 
 // Calcular festivos locales de Almería según reglas específicas
+// Devuelve un objeto con los días festivos de Almería para el año dado
+/**
+ * Lógica principal para el funcionamiento del calendario.
+ * Este archivo contiene la lógica para calcular y mostrar el calendario,
+ * así como la carga de festivos desde una API.
+ */
+// calendar.js: Lógica principal para el funcionamiento del calendario.
+
+/**
+ * Mes actual (0-11)
+ * @type {number}
+ */
+let currentMonth = new Date().getMonth();
+
+/**
+ * Año actual (YYYY)
+ * @type {number}
+ */
+let currentYear = new Date().getFullYear();
+
+/**
+ * Objeto que almacena los festivos cargados dinámicamente desde la API y locales.
+ * Ejemplo: festivos['2026-12-25'] = {nombre: 'Navidad', tipo: 'Nacional'}
+ * @type {Object}
+ */
+let festivos = {};
+
+/**
+ * Santoral: Diccionario con los santos principales por día, cargado dinámicamente desde santoral.json
+ * @type {Object}
+ */
+let santoral = {};
+
+/**
+ * Tareas: Diccionario con las tareas por día, cargado dinámicamente desde tareas.json
+ * @type {Object}
+ */
+let tareas = {};
+
+/**
+ * Calcula los festivos locales de Almería según reglas específicas:
+ * - San Juan (24 junio) solo si es día laborable.
+ * - Si San Juan cae en fin de semana, el 26 de diciembre es "Día del Pendón".
+ * - Feria de Almería: 10 días, incluyendo la última semana completa de agosto.
+ * - Virgen del Mar: último sábado de la Feria.
+ * @param {number} year - Año a calcular.
+ * @returns {Object} Objeto con los días festivos de Almería.
+ */
 function calculateAlmeriaHolidays(year) {
     const holidays = {};
     
@@ -69,160 +117,7 @@ function calculateAlmeriaHolidays(year) {
 }
 
 // Santoral completo 2025 y 2026 (selección principal de santos por día)
-const santoral = {
-    // 2025
-    '2025-01-01': 'María Madre de Dios, Año Nuevo',
-    '2025-01-02': 'Basilio Magno, Gregorio de Naciánzo',
-    '2025-01-03': 'Genoveva, Prisciliano',
-    '2025-01-06': 'Reyes Magos, Epifanía',
-    '2025-01-17': 'Antonio Abad',
-    '2025-01-20': 'Fabián, Sebastián',
-    '2025-01-21': 'Inés',
-    '2025-02-02': 'Candelaria, Presentación',
-    '2025-02-03': 'Blas, Óscar',
-    '2025-02-05': 'Águeda',
-    '2025-02-10': 'Escolástica',
-    '2025-02-14': 'Valentín, Valentina',
-    '2025-02-21': 'Pedro Damián',
-    '2025-02-28': 'Leandro, Román',
-    '2025-03-17': 'Patricio',
-    '2025-03-19': 'San José',
-    '2025-03-25': 'Anunciación, Encarnación',
-    '2025-04-17': 'Jueves Santo',
-    '2025-04-18': 'Viernes Santo',
-    '2025-04-20': 'Domingo de Resurrección',
-    '2025-04-23': 'Jorge',
-    '2025-04-25': 'Marcos',
-    '2025-04-29': 'Catalina de Siena',
-    '2025-05-01': 'Felipe, Santiago el Menor',
-    '2025-05-02': 'Atanasio',
-    '2025-05-03': 'Felipe, Santiago',
-    '2025-05-15': 'Isidro Labrador',
-    '2025-05-29': 'Ascensión del Señor',
-    '2025-06-08': 'Pentecostés',
-    '2025-06-11': 'Bernabé',
-    '2025-06-13': 'Antonio de Padua',
-    '2025-06-24': 'San Juan Bautista',
-    '2025-06-29': 'Pedro y Pablo',
-    '2025-07-03': 'Tomás Apóstol',
-    '2025-07-11': 'Benito',
-    '2025-07-22': 'María Magdalena',
-    '2025-07-25': 'Santiago Apóstol',
-    '2025-07-31': 'Ignacio de Loyola',
-    '2025-08-01': 'Alfonso María de Ligorio',
-    '2025-08-04': 'Juan María Vianney',
-    '2025-08-10': 'Lorenzo',
-    '2025-08-11': 'Clara',
-    '2025-08-14': 'Maximiliano Kolbe',
-    '2025-08-15': 'Asunción de María',
-    '2025-08-24': 'Bartolomé',
-    '2025-08-28': 'Agustín',
-    '2025-08-29': 'Decapitación San Juan Bautista',
-    '2025-09-03': 'Gregorio Magno',
-    '2025-09-08': 'Natividad de María',
-    '2025-09-14': 'Exaltación de la Cruz',
-    '2025-09-21': 'Mateo Apóstol',
-    '2025-09-23': 'Pío de Pietrelcina',
-    '2025-09-29': 'Miguel, Gabriel y Rafael',
-    '2025-10-01': 'Teresa del Niño Jesús',
-    '2025-10-02': 'Ángeles Custodios',
-    '2025-10-15': 'Teresa de Jesús',
-    '2025-10-28': 'Simón, Judas Tadeo',
-    '2025-11-01': 'Todos los Santos',
-    '2025-11-02': 'Difuntos',
-    '2025-11-04': 'Carlos Borromeo',
-    '2025-11-10': 'León Magno',
-    '2025-11-11': 'Martín de Tours',
-    '2025-11-17': 'Isabel de Hungría',
-    '2025-11-30': 'Andrés Apóstol',
-    '2025-12-03': 'Francisco Javier',
-    '2025-12-06': 'Nicolás de Bari',
-    '2025-12-08': 'Inmaculada Concepción',
-    '2025-12-13': 'Lucía',
-    '2025-12-14': 'Juan de la Cruz',
-    '2025-12-25': 'Navidad, Jesús',
-    '2025-12-26': 'Esteban, Protomártir',
-    '2025-12-27': 'Juan Evangelista',
-    '2025-12-28': 'Santos Inocentes',
-    '2025-12-31': 'Silvestre',
-    // 2026
-    '2026-01-01': 'María Madre de Dios, Año Nuevo',
-    '2026-01-02': 'Basilio Magno, Gregorio de Naciánzo',
-    '2026-01-03': 'Genoveva, Prisciliano',
-    '2026-01-06': 'Reyes Magos, Epifanía',
-    '2026-01-17': 'Antonio Abad',
-    '2026-01-20': 'Fabián, Sebastián',
-    '2026-01-21': 'Inés',
-    '2026-02-02': 'Candelaria, Presentación',
-    '2026-02-03': 'Blas, Óscar',
-    '2026-02-05': 'Águeda',
-    '2026-02-10': 'Escolástica',
-    '2026-02-14': 'Valentín, Valentina',
-    '2026-02-21': 'Pedro Damián',
-    '2026-02-28': 'Leandro, Román',
-    '2026-03-17': 'Patricio',
-    '2026-03-19': 'San José',
-    '2026-03-25': 'Anunciación, Encarnación',
-    '2026-04-02': 'Francisco, Ofelia',
-    '2026-04-03': 'Viernes Santo',
-    '2026-04-05': 'Domingo de Resurrección',
-    '2026-04-23': 'Jorge',
-    '2026-04-25': 'Marcos',
-    '2026-04-29': 'Catalina de Siena',
-    '2026-05-01': 'Felipe, Santiago el Menor',
-    '2026-05-02': 'Atanasio',
-    '2026-05-03': 'Felipe, Santiago',
-    '2026-05-14': 'Ascensión del Señor',
-    '2026-05-15': 'Isidro Labrador',
-    '2026-05-24': 'Pentecostés',
-    '2026-05-31': 'Santísima Trinidad',
-    '2026-06-11': 'Bernabé',
-    '2026-06-12': 'Sagrado Corazón',
-    '2026-06-13': 'Inmaculado Corazón de María',
-    '2026-06-24': 'San Juan Bautista',
-    '2026-06-29': 'Pedro y Pablo',
-    '2026-07-03': 'Tomás Apóstol',
-    '2026-07-11': 'Benito',
-    '2026-07-22': 'María Magdalena',
-    '2026-07-25': 'Santiago Apóstol',
-    '2026-07-31': 'Ignacio de Loyola',
-    '2026-08-01': 'Alfonso María de Ligorio',
-    '2026-08-04': 'Juan María Vianney',
-    '2026-08-10': 'Lorenzo',
-    '2026-08-11': 'Clara',
-    '2026-08-14': 'Maximiliano Kolbe',
-    '2026-08-15': 'Asunción de María',
-    '2026-08-24': 'Bartolomé',
-    '2026-08-28': 'Agustín',
-    '2026-08-29': 'Decapitación San Juan Bautista',
-    '2026-09-03': 'Gregorio Magno',
-    '2026-09-08': 'Natividad de María',
-    '2026-09-14': 'Exaltación de la Cruz',
-    '2026-09-21': 'Mateo Apóstol',
-    '2026-09-23': 'Pío de Pietrelcina',
-    '2026-09-29': 'Miguel, Gabriel y Rafael',
-    '2026-10-01': 'Teresa del Niño Jesús',
-    '2026-10-02': 'Ángeles Custodios',
-    '2026-10-15': 'Teresa de Jesús',
-    '2026-10-28': 'Simón, Judas Tadeo',
-    '2026-11-01': 'Todos los Santos',
-    '2026-11-02': 'Difuntos',
-    '2026-11-04': 'Carlos Borromeo',
-    '2026-11-10': 'León Magno',
-    '2026-11-11': 'Martín de Tours',
-    '2026-11-17': 'Isabel de Hungría',
-    '2026-11-30': 'Andrés Apóstol',
-    '2026-12-03': 'Francisco Javier',
-    '2026-12-06': 'Nicolás de Bari',
-    '2026-12-08': 'Inmaculada Concepción',
-    '2026-12-13': 'Lucía',
-    '2026-12-14': 'Juan de la Cruz',
-    '2026-12-25': 'Navidad, Jesús',
-    '2026-12-26': 'Esteban, Protomártir',
-    '2026-12-27': 'Juan Evangelista',
-    '2026-12-28': 'Santos Inocentes',
-    '2026-12-31': 'Silvestre'
-};
+// Diccionario con los santos principales por día
 
 // Calcular fase lunar usando algoritmo
 function getMoonPhase(year, month, day) {
@@ -312,6 +207,30 @@ async function loadHolidays(year) {
     }
 }
 
+/**
+ * Carga el santoral desde el archivo externo santoral.json
+ */
+async function loadSantoral() {
+    try {
+        const response = await fetch('js/santoral.json');
+        santoral = await response.json();
+    } catch (error) {
+        console.error('Error cargando santoral:', error);
+    }
+}
+
+/**
+ * Carga las tareas desde el archivo externo tareas.json
+ */
+async function loadTareas() {
+    try {
+        const response = await fetch('js/tareas.json');
+        tareas = await response.json();
+    } catch (error) {
+        console.error('Error cargando tareas:', error);
+    }
+}
+
 function getDaysInMonth(month, year) {
     return new Date(year, month + 1, 0).getDate();
 }
@@ -354,7 +273,11 @@ async function renderCalendar() {
         const date = formatDate(day, currentMonth, currentYear);
         const dayOfWeek = new Date(currentYear, currentMonth, day).getDay();
         const isFestivo = festivos[date];
-        const isSantoral = santoral[date];
+        const keySantoral = `${String(currentMonth + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        const isSantoral = santoral[keySantoral];
+        // Tareas: soporta array o string
+        let tareasDia = tareas[keySantoral];
+        if (typeof tareasDia === 'string') tareasDia = [tareasDia];
         const lunarPhase = getMoonPhase(currentYear, currentMonth, day);
         const isToday = new Date().toDateString() === new Date(currentYear, currentMonth, day).toDateString();
 
@@ -370,6 +293,7 @@ async function renderCalendar() {
             ${lunarPhase ? `<div class="lunar-phase">${lunarPhase}</div>` : ''}
             ${isFestivo ? `<div class="festivo-label" title="${isFestivo.tipo}">🎉 ${isFestivo.nombre}</div>` : ''}
             ${isSantoral ? `<div class="santoral">${isSantoral}</div>` : ''}
+            ${tareasDia && tareasDia.length ? `<div class="tareas">${tareasDia.map(t => `<div>📝 ${t}</div>`).join('')}</div>` : ''}
         </td>`;
 
         if ((firstDay + day) % 7 === 0) html += '</tr><tr>';
@@ -413,4 +337,8 @@ async function initCalendar() {
 }
 
 // Renderizar calendario al cargar
-initCalendar();
+(async function() {
+    await loadSantoral();
+    await loadTareas();
+    await initCalendar();
+})();

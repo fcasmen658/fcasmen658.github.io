@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Tareas</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <div class="container add-task-form">
+        <h2>📋 Lista de Tareas</h2>
+        <div id="tareasList">
+            <p>Cargando tareas...</p>
+        </div>
+        <div id="selectedTaskSection">
+            <label for="editTask">Editar tarea seleccionada:</label>
+            <textarea id="editTask" rows="2"></textarea>
+            <button class="print-button" id="editTaskBtn">Guardar cambios</button>
+            <button class="print-button" id="deleteTaskBtn">Eliminar tarea</button>
+            <button class="print-button" id="cancelEditBtn">Cancelar</button>
+        </div>
+        <button class="print-button" onclick="window.location.href='index.html'">← Volver al calendario</button>
+    </div>
+    <script src="js/listaTareas.js"></script>
+</body>
+</html>
