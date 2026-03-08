@@ -405,7 +405,7 @@ ul {
     justify-content: center;
     align-items: center;
     width: 100%;
-    padding: 12px 0;
+    padding: 0;
     background: transparent;
 }
 
@@ -413,6 +413,7 @@ ul {
     display: block;
     max-width: 100%;
     border: 0;
+    overflow: hidden;
 }
 
 /* ===================================
