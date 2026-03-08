@@ -26,38 +26,39 @@
    =================================== */
 :root {
     /* Paleta de Colores - Light Mode */
-    --color-mesa-verde: #2E7D32;
-    --color-verde-hover: #1B5E20;
-    --color-azul-profundo: #1976D2;
-    --color-azul-hover: #1565C0;
-    --color-rojo-intenso: #D32F2F;
-    --color-amarillo-brillante: #FBC02D;
+    --color-mesa-verde: #2e7d32;
+    --color-verde-hover: #1b5e20;
+    --color-azul-profundo: #1976d2;
+    --color-azul-hover: #1565c0;
+    --color-rojo-intenso: #d32f2f;
+    --color-amarillo-brillante: #fbc02d;
     --color-negro-clasico: #212121;
-    --color-blanco-puro: #FFFFFF;
+    --color-blanco-puro: #ffffff;
     --color-gris-medio: #616161;
     --color-gris-claro: #f5f5f5;
     --color-gris-border: rgba(97, 97, 97, 0.2);
-    
+
     /* Colores semánticos */
-    --color-fondo-principal: #FFFFFF;
+    --color-fondo-principal: #ffffff;
     --color-fondo-secundario: #f8f9fa;
-    --color-superficie: #FFFFFF;
+    --color-superficie: #ffffff;
     --color-texto-primario: #212121;
     --color-texto-secundario: #616161;
-    --color-texto-terciario: #9E9E9E;
-    --color-borde: #E0E0E0;
-    
+    --color-texto-terciario: #9e9e9e;
+    --color-borde: #e0e0e0;
+
     /* Tipografías */
     --font-primary: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-secondary: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-impact: 'Oswald', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-    --font-heading: 'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --font-heading:
+        'Atkinson Hyperlegible', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
     --font-body: 'Roboto', sans-serif;
-    
+
     /* Tamaños */
     --container-width: 1280px;
     --border-radius: 0.625rem;
-    
+
     /* Sombras - Light Mode */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -73,27 +74,27 @@
    =================================== */
 :root.theme-dark {
     /* Paleta de Colores - Dark Mode */
-    --color-mesa-verde: #4CAF50;
-    --color-verde-hover: #66BB6A;
-    --color-azul-profundo: #42A5F5;
-    --color-azul-hover: #64B5F6;
-    --color-rojo-intenso: #EF5350;
-    --color-amarillo-brillante: #FFEB3B;
-    --color-negro-clasico: #E0E0E0;
-    --color-blanco-puro: #1E1E1E;
-    --color-gris-medio: #B0B0B0;
-    --color-gris-claro: #2D2D2D;
+    --color-mesa-verde: #4caf50;
+    --color-verde-hover: #66bb6a;
+    --color-azul-profundo: #42a5f5;
+    --color-azul-hover: #64b5f6;
+    --color-rojo-intenso: #ef5350;
+    --color-amarillo-brillante: #ffeb3b;
+    --color-negro-clasico: #e0e0e0;
+    --color-blanco-puro: #1e1e1e;
+    --color-gris-medio: #b0b0b0;
+    --color-gris-claro: #2d2d2d;
     --color-gris-border: rgba(255, 255, 255, 0.12);
-    
+
     /* Colores semánticos - Dark Mode */
-    --color-fondo-principal: #1E1E1E;
-    --color-fondo-secundario: #2D2D2D;
+    --color-fondo-principal: #1e1e1e;
+    --color-fondo-secundario: #2d2d2d;
     --color-superficie: #252525;
-    --color-texto-primario: #E0E0E0;
-    --color-texto-secundario: #B0B0B0;
+    --color-texto-primario: #e0e0e0;
+    --color-texto-secundario: #b0b0b0;
     --color-texto-terciario: #808080;
-    --color-borde: #3D3D3D;
-    
+    --color-borde: #3d3d3d;
+
     /* Sombras - Dark Mode (más sutiles) */
     --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
     --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
@@ -105,27 +106,27 @@
 @media (prefers-color-scheme: dark) {
     :root:not(.theme-light) {
         /* Paleta de Colores - Dark Mode */
-        --color-mesa-verde: #4CAF50;
-        --color-verde-hover: #66BB6A;
-        --color-azul-profundo: #42A5F5;
-        --color-azul-hover: #64B5F6;
-        --color-rojo-intenso: #EF5350;
-        --color-amarillo-brillante: #FFEB3B;
-        --color-negro-clasico: #E0E0E0;
-        --color-blanco-puro: #1E1E1E;
-        --color-gris-medio: #B0B0B0;
-        --color-gris-claro: #2D2D2D;
+        --color-mesa-verde: #4caf50;
+        --color-verde-hover: #66bb6a;
+        --color-azul-profundo: #42a5f5;
+        --color-azul-hover: #64b5f6;
+        --color-rojo-intenso: #ef5350;
+        --color-amarillo-brillante: #ffeb3b;
+        --color-negro-clasico: #e0e0e0;
+        --color-blanco-puro: #1e1e1e;
+        --color-gris-medio: #b0b0b0;
+        --color-gris-claro: #2d2d2d;
         --color-gris-border: rgba(255, 255, 255, 0.12);
-        
+
         /* Colores semánticos - Dark Mode */
-        --color-fondo-principal: #1E1E1E;
-        --color-fondo-secundario: #2D2D2D;
+        --color-fondo-principal: #1e1e1e;
+        --color-fondo-secundario: #2d2d2d;
         --color-superficie: #252525;
-        --color-texto-primario: #E0E0E0;
-        --color-texto-secundario: #B0B0B0;
+        --color-texto-primario: #e0e0e0;
+        --color-texto-secundario: #b0b0b0;
         --color-texto-terciario: #808080;
-        --color-borde: #3D3D3D;
-        
+        --color-borde: #3d3d3d;
+
         /* Sombras - Dark Mode */
         --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.3);
         --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.4);
@@ -154,7 +155,9 @@ body {
     background-color: var(--color-fondo-principal);
     line-height: 1.6;
     overflow-x: hidden;
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
 img {
@@ -209,7 +212,9 @@ ul {
     top: 0;
     z-index: 1000;
     border-bottom: 1px solid var(--color-borde);
-    transition: background-color 0.3s ease, border-color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        border-color 0.3s ease;
 }
 
 .header-content {
@@ -270,7 +275,10 @@ ul {
     color: var(--color-texto-primario);
     font-family: var(--font-secondary);
     font-size: 0.875rem;
-    transition: border-color 0.2s, box-shadow 0.2s, background-color 0.3s ease;
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s,
+        background-color 0.3s ease;
 }
 
 .search-input:focus {
@@ -387,6 +395,24 @@ ul {
 .nav-link-mobile:hover {
     color: var(--color-mesa-verde);
     background-color: var(--color-gris-claro);
+}
+
+/* ===================================
+   BANNER DESTACADO
+   =================================== */
+.destacado {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px 0;
+    background: transparent;
+    overflow: hidden;
+}
+
+.destacado iframe {
+    display: block;
+    max-width: 100%;
+    border: 0;
 }
 
 /* ===================================
@@ -661,7 +687,7 @@ ul {
 }
 
 .star.filled {
-    color: #2E7D32;
+    color: #2e7d32;
 }
 
 .review-count {
@@ -843,7 +869,9 @@ ul {
     color: var(--color-texto-primario);
     padding: 3rem 0 1.5rem;
     border-top: 1px solid var(--color-borde);
-    transition: background-color 0.3s ease, color 0.3s ease;
+    transition:
+        background-color 0.3s ease,
+        color 0.3s ease;
 }
 
 .footer-grid {
@@ -868,7 +896,7 @@ ul {
 .footer-text {
     font-family: var(--font-secondary);
     font-size: 0.938rem;
-    color: #9CA3AF;
+    color: #9ca3af;
     margin-bottom: 1.5rem;
     line-height: 1.6;
     max-width: 500px;
@@ -886,7 +914,7 @@ ul {
     gap: 0.75rem;
     font-family: var(--font-secondary);
     font-size: 0.938rem;
-    color: #9CA3AF;
+    color: #9ca3af;
 }
 
 .contact-item svg {
@@ -911,7 +939,7 @@ ul {
 .footer-links a {
     font-family: var(--font-secondary);
     font-size: 0.938rem;
-    color: #9CA3AF;
+    color: #9ca3af;
     transition: color 0.2s;
 }
 
@@ -931,7 +959,7 @@ ul {
 .footer-copyright {
     font-family: var(--font-secondary);
     font-size: 0.875rem;
-    color: #9CA3AF;
+    color: #9ca3af;
     text-align: center;
 }
 
@@ -944,7 +972,7 @@ ul {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #9CA3AF;
+    color: #9ca3af;
     transition: color 0.2s;
 }
 
@@ -1566,60 +1594,60 @@ ul {
     .nav-desktop {
         display: flex;
     }
-    
+
     .search-bar {
         display: flex;
     }
-    
+
     .mobile-menu-btn {
         display: none;
     }
-    
+
     .nav-mobile {
         display: none !important;
     }
-    
+
     .hero {
         grid-template-columns: 1fr 1fr;
     }
-    
+
     .hero-content {
         padding: 3rem 2rem;
     }
-    
+
     .hero-title {
         font-size: 3rem;
     }
-    
+
     .hero-image {
         min-height: 450px;
     }
-    
+
     .products-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .about-grid {
         grid-template-columns: 1fr 1fr;
     }
-    
+
     .features-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .testimonials-grid {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .footer-grid {
         grid-template-columns: 2fr 1fr 1fr;
     }
-    
+
     .footer-bottom {
         flex-direction: row;
         justify-content: space-between;
     }
-    
+
     .footer-copyright {
         text-align: left;
     }
@@ -1630,65 +1658,65 @@ ul {
     .hero-title {
         font-size: 3.5rem;
     }
-    
+
     .hero-content {
         padding: 4rem 3rem;
     }
-    
+
     .products-grid {
         grid-template-columns: repeat(4, 1fr);
     }
-    
+
     .testimonials-grid {
         grid-template-columns: repeat(3, 1fr);
     }
-    
+
     /* Product Page - Desktop Grid */
     .product-detail-grid {
         grid-template-columns: 1fr 1fr;
         grid-template-rows: auto auto;
         gap: 3rem;
     }
-    
+
     .product-image-area {
         grid-column: 1;
         grid-row: 1 / 3;
     }
-    
+
     .product-info-area {
         grid-column: 2;
         grid-row: 1;
     }
-    
+
     .product-features-area {
         grid-column: 1 / 3;
         grid-row: 3;
     }
-    
+
     .product-specs-area {
         grid-column: 1 / 3;
         grid-row: 4;
     }
-    
+
     .features-list {
         grid-template-columns: repeat(2, 1fr);
     }
-    
+
     .product-actions {
         flex-direction: row;
         align-items: center;
     }
-    
+
     /* Search Page - Desktop Flexbox (2 columnas) */
     .search-results {
         flex-direction: row;
         flex-wrap: wrap;
     }
-    
+
     .search-result-card {
         flex: 0 0 calc(50% - 0.75rem);
     }
-    
+
     .search-controls {
         flex-direction: row;
         justify-content: space-between;
@@ -1707,7 +1735,11 @@ ul {
 .catalog-page {
     padding-top: 120px;
     padding-bottom: 3rem;
-    background: linear-gradient(135deg, var(--color-fondo-principal) 0%, rgba(255, 255, 255, 0.9) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--color-fondo-principal) 0%,
+        rgba(255, 255, 255, 0.9) 100%
+    );
     min-height: 100vh;
 }
 
@@ -1810,17 +1842,17 @@ ul {
     .catalog-title {
         font-size: 2rem;
     }
-    
+
     .catalog-filters {
         flex-direction: column;
         align-items: stretch;
     }
-    
+
     .filter-sort {
         width: 100%;
         justify-content: space-between;
     }
-    
+
     .sort-select {
         flex: 1;
     }
@@ -1855,13 +1887,21 @@ ul {
    DARK MODE SPECIFIC STYLES
    =================================== */
 :root.theme-dark .hero {
-    background: linear-gradient(135deg, var(--color-fondo-secundario) 0%, var(--color-fondo-principal) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--color-fondo-secundario) 0%,
+        var(--color-fondo-principal) 100%
+    );
 }
 
 :root.theme-dark .featured-products,
 :root.theme-dark .catalog-page,
 :root.theme-dark .search-page {
-    background: linear-gradient(135deg, var(--color-fondo-principal) 0%, var(--color-fondo-secundario) 100%);
+    background: linear-gradient(
+        135deg,
+        var(--color-fondo-principal) 0%,
+        var(--color-fondo-secundario) 100%
+    );
 }
 
 :root.theme-dark .catalog-filters {
@@ -1936,4 +1976,3 @@ ul {
 :root.theme-dark .btn-secondary {
     color: var(--color-blanco-puro) !important;
 }
-
