@@ -404,9 +404,9 @@ ul {
     display: flex;
     justify-content: center;
     align-items: center;
+    width: 100%;
     padding: 12px 0;
     background: transparent;
-    overflow: hidden;
 }
 
 .destacado iframe {
