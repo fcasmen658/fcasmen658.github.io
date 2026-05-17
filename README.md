@@ -8,7 +8,7 @@ BillarPro ofrece una experiencia de compra completa con catálogo de productos, 
 
 ## 👤 Autor
 
-**fcasmen658** · [@fcasmen658](https://github.com/fcasmen658)  
+**fcasmen658** · [@fcasmen658](https://github.com/fcasmen658)
 2.º DAW — Diseño de Interfaces Web · Tarea Online 06
 
 ---
@@ -89,8 +89,8 @@ Auditoría realizada con **axe-core 4.9.1** (WCAG 2.1 AA) sobre las **8 páginas
 
 ## 🌐 URLs del proyecto
 
-- **Repositorio GitHub:** https://github.com/fcasmen658.github.io
-- **Página web (GitHub Pages):** https://github.com/fcasmen658.github.io
+- **Repositorio GitHub:** https://github.com/fcasmen658/fcasmen658.github.io
+- **Página web (GitHub Pages):** https://github.com/fcasmen658/fcasmen658.github.io
 
 ---
 
@@ -98,7 +98,7 @@ Auditoría realizada con **axe-core 4.9.1** (WCAG 2.1 AA) sobre las **8 páginas
 
 ```bash
 # Clonar el repositorio
-git clone https://github.com/fcasmen658.github.io
+git clone https://github.com/fcasmen658/fcasmen658.github.io
 cd BillarPro
 
 # Servir con npx (requiere Node.js)
