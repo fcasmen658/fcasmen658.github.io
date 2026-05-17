@@ -1,674 +1,1467 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Portafolio de Francisco Miguel Casas Méndez - Desarrollo de Aplicaciones Web">
-    <meta name="theme-color" content="#2563eb">
-    <link rel="canonical" href="https://fcasmen658.github.io/">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon" href="img/logo.png">
-    <title>Francisco Miguel Casas Méndez | Portafolio DAW</title>
-    <style>
-        :root {
-            --primary: #2563eb;
-            --primary-dark: #1e40af;
-            --secondary: #64748b;
-            --bg: #ffffff;
-            --bg-alt: #f8fafc;
-            --text: #1e293b;
-            --text-light: #64748b;
-            --border: #e2e8f0;
-            --shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1);
-            --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1);
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            line-height: 1.6;
-            color: var(--text);
-            background: var(--bg);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 2rem;
-        }
-
-        /* Header */
-        header {
-            background: var(--bg);
-            border-bottom: 1px solid var(--border);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1.5rem 0;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 700;
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.2s;
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .nav-item {
-            position: relative;
-        }
-
-        .dropdown {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: var(--bg);
-            border: 1px solid var(--border);
-            border-radius: 0.5rem;
-            box-shadow: var(--shadow-lg);
-            min-width: 320px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s;
-            margin-top: 0.5rem;
-            white-space: nowrap;
-        }
-
-        .nav-item:hover .dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        /* Accesible con teclado */
-        .nav-item:focus-within .dropdown {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .dropdown a {
-            display: block;
-            padding: 0.75rem 1.25rem;
-            color: var(--text);
-            text-decoration: none;
-            transition: background 0.2s;
-        }
-
-        .dropdown a:hover {
-            background: var(--bg-alt);
-            color: var(--primary);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 6rem 0;
-            text-align: center;
-        }
-
-        .hero h1 {
-            font-size: clamp(2.5rem, 5vw, 4rem);
-            font-weight: 800;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto 2rem;
-        }
-
-        .hero .subtitle {
-            font-size: 1rem;
-            color: var(--text-light);
-            margin-bottom: 3rem;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .btn {
-            padding: 0.875rem 2rem;
-            border-radius: 0.5rem;
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s;
-            display: inline-block;
-        }
-
-        .btn-primary {
-            background: var(--primary);
-            color: white;
-            box-shadow: var(--shadow);
-        }
-
-        .btn-primary:hover {
-            background: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .btn-secondary {
-            background: transparent;
-            color: var(--text);
-            border: 2px solid var(--border);
-        }
-
-        .btn-secondary:hover {
-            border-color: var(--primary);
-            color: var(--primary);
-        }
-
-        /* Projects Section */
-        .projects {
-            padding: 4rem 0;
-            background: var(--bg-alt);
-        }
-
-        .section-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .section-header p {
-            color: var(--text-light);
-            font-size: 1.125rem;
-        }
-
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-card {
-            background: var(--bg);
-            border-radius: 1rem;
-            overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: all 0.3s;
-            border: 1px solid var(--border);
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-        }
-
-        .project-image {
-            width: 100%;
-            height: 200px;
-            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 3rem;
-            color: white;
-        }
-
-        .project-content {
-            padding: 1.5rem;
-        }
-
-        .project-title {
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 0.5rem;
-        }
-
-        .project-description {
-            color: var(--text-light);
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .project-tags {
-            display: flex;
-            gap: 0.5rem;
-            flex-wrap: wrap;
-            margin-bottom: 1rem;
-        }
-
-        .tag {
-            padding: 0.25rem 0.75rem;
-            background: var(--bg-alt);
-            border-radius: 0.25rem;
-            font-size: 0.875rem;
-            color: var(--text-light);
-        }
-
-        .project-link {
-            color: var(--primary);
-            text-decoration: none;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .project-link:hover {
-            text-decoration: underline;
-        }
-
-        /* About Section */
-        .about {
-            padding: 4rem 0;
-        }
-
-        .about-content {
-            max-width: 800px;
-            margin: 0 auto;
-            text-align: center;
-        }
-
-        .about-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-        }
-
-        .about-content p {
-            color: var(--text-light);
-            font-size: 1.125rem;
-            margin-bottom: 1rem;
-        }
-
-        .skills {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            justify-content: center;
-            margin-top: 2rem;
-        }
-
-        .skill {
-            padding: 0.75rem 1.5rem;
-            background: var(--bg-alt);
-            border-radius: 0.5rem;
-            font-weight: 600;
-            color: var(--text);
-        }
-
-        /* Footer */
-        footer {
-            background: var(--text);
-            color: white;
-            padding: 2rem 0;
-            text-align: center;
-        }
-
-        footer a {
-            color: var(--primary);
-            text-decoration: none;
-        }
-
-        footer a:hover {
-            text-decoration: underline;
-        }
-
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-            justify-content: center;
-            margin-top: 1rem;
-        }
-
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: color 0.2s;
-        }
-
-        .social-links a:hover {
-            color: var(--primary);
-        }
-
-        /* Skip Link */
-        .skip-link {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            background: var(--primary);
-            color: #fff;
-            padding: 0.75rem 1.5rem;
-            text-decoration: none;
-            font-weight: 600;
-            z-index: 10000;
-            border-radius: 0 0 0.5rem 0;
-            transition: top 0.3s;
-        }
-
-        .skip-link:focus {
-            top: 0;
-            outline: 3px solid var(--primary-dark);
-            outline-offset: 2px;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .nav-links {
-                display: none;
-            }
-
-            .hero {
-                padding: 3rem 0;
-            }
-
-            .projects-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
-</head>
-<body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Descubre en BillarPro tu tienda especializada en billar profesional. Tacos Predator, mesas de snooker, bolas Aramith y accesorios. Envío gratis en pedidos superiores a 100€."
+    />
+    <meta name="keywords" content="billar, taco de billar, mesa de billar, bolas de billar, snooker, billar americano, billar profesional, BillarPro, Predator, Aramith" />
+    <meta name="author" content="BillarPro" />
+    <meta property="og:title" content="BillarPro - Equipos de Billar Profesional" />
+    <meta property="og:description" content="Tu tienda especializada en billar profesional. Tacos Predator, mesas de snooker, bolas Aramith y accesorios de alta calidad." />
+    <meta property="og:type" content="website" />
+    <title>BillarPro - Equipos de Billar Profesional</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="css/styles.min.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <link rel="stylesheet" href="css/interactive.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Open+Sans:wght@300;400;500;600;700&family=Oswald:wght@300;400;500;600;700&family=Atkinson+Hyperlegible:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <!-- Skip Link -->
     <a href="#main-content" class="skip-link">Saltar al contenido principal</a>
+
     <!-- Header -->
-    <header>
-        <nav class="container" aria-label="Navegación principal" role="navigation">
-            <a href="index.html" class="logo"><img src="img/logo.png" height="150" alt="Logo"></a>
-            <ul class="nav-links">
-                <li><a href="#inicio" aria-current="page">Inicio</a></li>
-                <li class="nav-item">
-                    <a href="#modulos" aria-haspopup="true">Módulos</a>
-                    <div class="dropdown">
-                        <a href="BBDD.html">Bases de Datos</a>
-                        <a href="DAW.html">Despliegue de Aplicaciones Web</a>
-                        <a href="DEWC.html">Desarrollo Web en Entorno Cliente</a>
-                        <a href="DEWS.html">Desarrollo Web en Entorno Servidor</a>
-                        <a href="DIW.html">Diseño de Interfaces Web</a>
-                        <a href="ED.html">Entornos de Desarrollo</a>
-                        <a href="Java.html">Programación Java</a>
-                        <a href="LLMM.html">Lenguajes de Marcas</a>
-                    </div>
-                </li>
-                <li><a href="#sobre-mi">Sobre mí</a></li>
-                <li><a href="https://github.com/fcasmen658" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            </ul>
+    <header class="header">
+      <div class="container">
+        <div class="header-content">
+          <!-- Logo SVG vectorial animado -->
+          <div class="logo">
+            <svg
+              class="logo-svg"
+              viewBox="0 0 140 140"
+              xmlns="http://www.w3.org/2000/svg"
+              role="img"
+              aria-label="BillarPro - Equipos de Billar Profesional"
+            >
+              <defs>
+                <clipPath id="clip-bola-logo">
+                  <circle cx="70" cy="55" r="46" />
+                </clipPath>
+              </defs>
+              <!-- Bola: animación de caída al cargar (fase 1) -->
+              <g class="logo-bola">
+                <circle cx="70" cy="55" r="46" fill="#212121" />
+                <!-- Franja ecuatorial blanca -->
+                <rect
+                  x="24"
+                  y="48"
+                  width="92"
+                  height="14"
+                  fill="#ffffff"
+                  clip-path="url(#clip-bola-logo)"
+                />
+                <!-- Círculo blanco central para el número -->
+                <circle cx="70" cy="55" r="13" fill="#ffffff" />
+                <!-- Número 8 -->
+                <text
+                  x="70"
+                  y="61"
+                  text-anchor="middle"
+                  fill="#1976d2"
+                  font-size="15"
+                  font-weight="700"
+                  font-family="'Oswald', sans-serif"
+                >
+                  8
+                </text>
+              </g>
+              <!-- Nombre de la empresa -->
+              <text
+                x="70"
+                y="112"
+                text-anchor="middle"
+                class="logo-text-nombre"
+                font-size="20"
+                font-weight="700"
+                font-family="'Oswald', sans-serif"
+                letter-spacing="2"
+              >
+                BILLAR
+              </text>
+              <text
+                x="70"
+                y="130"
+                text-anchor="middle"
+                class="logo-text-pro"
+                font-size="14"
+                font-weight="400"
+                font-family="'Oswald', sans-serif"
+                letter-spacing="5"
+              >
+                PRO
+              </text>
+            </svg>
+          </div>
+
+          <!-- Desktop Navigation -->
+          <nav class="nav-desktop" aria-label="Navegación principal">
+            <a href="#inicio" class="nav-link">Inicio</a>
+            <a href="productos.html" class="nav-link">Productos</a>
+            <a href="#sobre-nosotros" class="nav-link">Sobre Nosotros</a>
+            <a href="contacto.html" class="nav-link">Contacto</a>
+          </nav>
+
+          <!-- Search Bar -->
+          <form
+            class="search-bar"
+            action="busqueda"
+            method="get"
+            role="search"
+          >
+            <svg
+              class="search-icon"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              aria-hidden="true"
+            >
+              <circle cx="11" cy="11" r="8"></circle>
+              <path d="m21 21-4.35-4.35"></path>
+            </svg>
+            <label for="searchInput" class="visually-hidden"
+              >Buscar productos</label
+            >
+            <input
+              type="text"
+              id="searchInput"
+              name="q"
+              placeholder="Buscar productos..."
+              class="search-input"
+              aria-label="Buscar productos"
+            />
+          </form>
+
+          <!-- Cart and Mobile Menu -->
+          <div class="header-actions">
+            <!-- Theme Toggle Button -->
+            <button
+              class="theme-toggle-btn"
+              id="themeToggle"
+              aria-label="Cambiar tema"
+            >
+              <svg
+                class="sun-icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+              </svg>
+              <svg
+                class="moon-icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"
+                ></path>
+              </svg>
+            </button>
+
+            <button
+              class="cart-btn"
+              aria-label="Carrito de compras (0 artículos)"
+            >
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                aria-hidden="true"
+              >
+                <circle cx="9" cy="21" r="1"></circle>
+                <circle cx="20" cy="21" r="1"></circle>
+                <path
+                  d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                ></path>
+              </svg>
+              <span class="cart-badge">0</span>
+            </button>
+
+            <button
+              class="mobile-menu-btn"
+              id="mobileMenuBtn"
+              type="button"
+              aria-label="Abrir menú"
+              title="Abrir menú"
+              aria-expanded="false"
+              aria-controls="mobileMenu"
+            >
+              <span class="visually-hidden">Abrir menú</span>
+              <svg
+                class="menu-icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="3" y1="12" x2="21" y2="12"></line>
+                <line x1="3" y1="6" x2="21" y2="6"></line>
+                <line x1="3" y1="18" x2="21" y2="18"></line>
+              </svg>
+              <svg
+                class="close-icon"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Mobile Navigation -->
+        <nav class="nav-mobile" id="mobileMenu" aria-label="Navegación móvil">
+          <a href="#inicio" class="nav-link-mobile">Inicio</a>
+          <a href="productos.html" class="nav-link-mobile">Productos</a>
+          <a href="#sobre-nosotros" class="nav-link-mobile">Sobre Nosotros</a>
+          <a href="contacto.html" class="nav-link-mobile">Contacto</a>
         </nav>
+      </div>
     </header>
 
-    <!-- Hero Section -->
+    <!-- Main Content -->
     <main id="main-content">
-    <section id="inicio" class="hero">
-        <div class="container">
-            <h1>Francisco Miguel Casas Méndez</h1>
-            <p>Estudiante de Desarrollo de Aplicaciones Web</p>
-            <p class="subtitle"></p>
-            <div class="cta-buttons">
-                <a href="#modulos" class="btn btn-primary">Ver Módulos</a>
-                <a href="https://github.com/fcasmen658" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">GitHub</a>
+      <!-- Carrusel Hero (sustituye al anterior hero estático) -->
+      <section id="inicio">
+        <div
+          id="heroCarrusel"
+          class="carousel slide carousel-fade hero-carrusel"
+          data-bs-ride="carousel"
+          data-bs-interval="5500"
+        >
+          <!-- Indicadores -->
+          <div class="carousel-indicators">
+            <button
+              type="button"
+              data-bs-target="#heroCarrusel"
+              data-bs-slide-to="0"
+              class="active"
+              aria-current="true"
+              aria-label="Diapositiva 1"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#heroCarrusel"
+              data-bs-slide-to="1"
+              aria-label="Diapositiva 2"
+            ></button>
+            <button
+              type="button"
+              data-bs-target="#heroCarrusel"
+              data-bs-slide-to="2"
+              aria-label="Diapositiva 3"
+            ></button>
+          </div>
+
+          <!-- Diapositivas -->
+          <div class="carousel-inner">
+            <!-- Slide 1: Hero principal -->
+            <div class="carousel-item active">
+              <picture>
+                <source srcset="images/hero.webp" type="image/webp" />
+                <img
+                  src="images/hero.jpg"
+                  class="d-block w-100"
+                  alt="Jugador profesional de billar concentrándose en el tiro"
+                />
+              </picture>
+              <div class="carousel-caption">
+                <h1>
+                  Todo para tu<br />
+                  <span class="accent">mesa de billar</span>
+                </h1>
+                <p>
+                  Descubre nuestra amplia selección de productos de alta calidad.
+                  Desde tacos profesionales hasta accesorios esenciales.
+                </p>
+                <div class="carousel-btns">
+                  <a href="productos.html" class="btn btn-primary btn-pulse">Ver Productos</a>
+                  <a href="contacto.html" class="btn btn-secondary">Contáctanos</a>
+                </div>
+              </div>
             </div>
+
+            <!-- Slide 2: Tacos profesionales -->
+            <div class="carousel-item">
+              <picture>
+                <source srcset="images/tacos.webp" type="image/webp" />
+                <img
+                  src="images/tacos.jpeg"
+                  class="d-block w-100"
+                  alt="Tacos profesionales de billar"
+                />
+              </picture>
+              <div class="carousel-caption">
+                <h2>
+                  Tacos<br />
+                  <span class="accent">Profesionales</span>
+                </h2>
+                <p>
+                  Predator, McDermott, Mezz y mucho más. Las mejores varas de
+                  competición para llevar tu juego al siguiente nivel.
+                </p>
+                <div class="carousel-btns">
+                  <a href="producto_tacos.html" class="btn btn-primary btn-pulse">Ver Tacos</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Slide 3: Mesas de competición -->
+            <div class="carousel-item">
+              <picture>
+                <source srcset="images/mesas.webp" type="image/webp" />
+                <img
+                  src="images/mesas.png"
+                  class="d-block w-100"
+                  alt="Mesa de snooker profesional"
+                />
+              </picture>
+              <div class="carousel-caption">
+                <h2>
+                  Mesas de<br />
+                  <span class="accent">Competición</span>
+                </h2>
+                <p>
+                  Mesas de snooker y billar americano diseñadas para el máximo
+                  rendimiento, tanto en sala como en casa.
+                </p>
+                <div class="carousel-btns">
+                  <a href="producto_mesas.html" class="btn btn-primary btn-pulse">Ver Mesas</a>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Controles prev/next -->
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#heroCarrusel"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#heroCarrusel"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+          </button>
         </div>
-    </section>
+      </section>
 
-    <!-- Projects Section -->
-    <section id="modulos" class="projects">
+      <!-- Separador animado entre secciones -->
+      <div class="separator-animado" role="separator" aria-hidden="true"></div>
+
+      <!-- Featured Products Section -->
+      <section id="productos" class="featured-products">
         <div class="container">
-            <div class="section-header">
-                <h2>Módulos</h2>
-                <p>Módulos del ciclo de Desarrollo de Aplicaciones Web</p>
+          <div class="section-header">
+            <h2 class="section-title">Productos Destacados</h2>
+            <p class="section-description">
+              Descubre nuestros productos más populares y de mayor calidad
+            </p>
+          </div>
+
+          <div class="products-grid">
+            <!-- Product Card 1 -->
+            <div class="product-card animate-on-scroll">
+              <a href="producto_tacos.html" class="product-image-wrapper">
+                <picture>
+                  <source srcset="images/tacos.webp" type="image/webp" />
+                  <img
+                    src="images/tacos.jpeg"
+                    alt="Taco Profesional Predator"
+                    class="product-image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+                <span
+                  class="badge bg-danger position-absolute top-0 start-0 m-2"
+                  >Oferta</span
+                >
+                <span class="badge bg-primary position-absolute top-0 end-0 m-2"
+                  >Tacos</span
+                >
+              </a>
+              <div class="product-content">
+                <h3 class="product-name">
+                  <a href="producto_tacos.html">Taco Profesional Predator</a>
+                </h3>
+                <div class="product-rating">
+                  <div class="stars">
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                  </div>
+                  <span class="review-count">(124)</span>
+                </div>
+                <div class="product-price">
+                  <span class="price-current">450€</span>
+                  <span class="price-original">500€</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <button
+                  class="btn btn-success w-100 d-flex align-items-center justify-content-center gap-2"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path
+                      d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                    ></path>
+                  </svg>
+                  Agregar al Carrito
+                </button>
+              </div>
             </div>
-            <div class="projects-grid">
-                <!-- BBDD -->
-                <div class="project-card">
-                    <div class="project-image">🗄️</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Bases de Datos</h3>
-                        <p class="project-description">
-                            Diseño, implementación y administración de bases de datos relacionales y no relacionales.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">MySQL</span>
-                            <span class="tag">PostgreSQL</span>
-                            <span class="tag">MongoDB</span>
-                        </div>
-                        <a href="BBDD.html" class="project-link">
-                            Ver módulo →
-                        </a>
-                    </div>
-                </div>
 
-                <!-- DAW -->
-                <div class="project-card">
-                    <div class="project-image">🚢</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Despliegue de Aplicaciones Web</h3>
-                        <p class="project-description">
-                            Puesta en producción de aplicaciones web y configuración de servidores.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Docker</span>
-                            <span class="tag">CI/CD</span>
-                            <span class="tag">Linux</span>
-                        </div>
-                        <a href="DAW.html" class="project-link">
-                            Ver módulo →
-                        </a>
-                    </div>
+            <!-- Product Card 2 -->
+            <div class="product-card animate-on-scroll">
+              <a href="producto_bolas.html" class="product-image-wrapper">
+                <img
+                  src="images/bolas.jpg"
+                  alt="Set de Bolas Premium Aramith"
+                  class="product-image"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="badge bg-primary position-absolute top-0 end-0 m-2"
+                  >Bolas</span
+                >
+              </a>
+              <div class="product-content">
+                <h3 class="product-name">
+                  <a href="producto_bolas.html">Set de Bolas Premium Aramith</a>
+                </h3>
+                <div class="product-rating">
+                  <div class="stars">
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                  </div>
+                  <span class="review-count">(89)</span>
                 </div>
-
-                <!-- DEWC -->
-                <div class="project-card">
-                    <div class="project-image">🌐</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Desarrollo Web en Entorno Cliente</h3>
-                        <p class="project-description">
-                            Creación de aplicaciones web interactivas con JavaScript y frameworks modernos.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">JavaScript</span>
-                            <span class="tag">React</span>
-                            <span class="tag">APIs REST</span>
-                        </div>
-                        <a href="DEWC.html" class="project-link">
-                            Ver módulo →
-                        </a>
-                    </div>
+                <div class="product-price">
+                  <span class="price-current">280€</span>
                 </div>
-
-                <!-- DEWS -->
-                <div class="project-card">
-                    <div class="project-image">🖥️</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Desarrollo Web en Entorno Servidor</h3>
-                        <p class="project-description">
-                            Programación del lado del servidor para aplicaciones web dinámicas y escalables.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">PHP</span>
-                            <span class="tag">Java Spring</span>
-                            <span class="tag">REST APIs</span>
-                        </div>
-                        <a href="DEWS.html" class="project-link">
-                            Ver módulo →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- DIW -->
-                <div class="project-card">
-                    <div class="project-image">🎨</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Diseño de Interfaces Web</h3>
-                        <p class="project-description">
-                            Desarrollo de interfaces web atractivas, funcionales y accesibles.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">HTML5</span>
-                            <span class="tag">CSS3</span>
-                            <span class="tag">Bootstrap</span>
-                        </div>
-                        <a href="DIW.html" class="project-link">
-                            Ver módulo →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- ED -->
-                <div class="project-card">
-                    <div class="project-image">🛠️</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Entornos de Desarrollo</h3>
-                        <p class="project-description">
-                            Uso de herramientas y metodologías para el desarrollo eficiente de software.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Git</span>
-                            <span class="tag">Testing</span>
-                            <span class="tag">Debugging</span>
-                        </div>
-                        <a href="ED.html" class="project-link">
-                            Ver módulo →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- Java -->
-                <div class="project-card">
-                    <div class="project-image">☕</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Programación Java</h3>
-                        <p class="project-description">
-                            Desarrollo de aplicaciones utilizando Java y programación orientada a objetos.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">Java</span>
-                            <span class="tag">POO</span>
-                            <span class="tag">JavaFX</span>
-                        </div>
-                        <a href="Java.html" class="project-link">
-                            Ver módulo →
-                        </a>
-                    </div>
-                </div>
-
-                <!-- LLMM -->
-                <div class="project-card">
-                    <div class="project-image">📝</div>
-                    <div class="project-content">
-                        <h3 class="project-title">Lenguajes de Marcas</h3>
-                        <p class="project-description">
-                            Trabajo con lenguajes de marcado y procesamiento de datos estructurados.
-                        </p>
-                        <div class="project-tags">
-                            <span class="tag">XML</span>
-                            <span class="tag">JSON</span>
-                            <span class="tag">XSLT</span>
-                        </div>
-                        <a href="LLMM.html" class="project-link">
-                            Ver módulo →
-                        </a>
-                    </div>
-                </div>
+              </div>
+              <div class="product-footer">
+                <button
+                  class="btn btn-success w-100 d-flex align-items-center justify-content-center gap-2"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path
+                      d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                    ></path>
+                  </svg>
+                  Agregar al Carrito
+                </button>
+              </div>
             </div>
+
+            <!-- Product Card 3 -->
+            <div class="product-card animate-on-scroll">
+              <a href="producto_tizas.html" class="product-image-wrapper">
+                <img
+                  src="images/tizas.jpg"
+                  alt="Tiza Master Chalk"
+                  class="product-image"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <span class="badge bg-info position-absolute top-0 end-0 m-2"
+                  >Accesorios</span
+                >
+              </a>
+              <div class="product-content">
+                <h3 class="product-name">
+                  <a href="producto_tizas.html"
+                    >Tiza Master Chalk (12 piezas)</a
+                  >
+                </h3>
+                <div class="product-rating">
+                  <div class="stars">
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star">★</span>
+                  </div>
+                  <span class="review-count">(76)</span>
+                </div>
+                <div class="product-price">
+                  <span class="price-current">35€</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <button
+                  class="btn btn-success w-100 d-flex align-items-center justify-content-center gap-2"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path
+                      d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                    ></path>
+                  </svg>
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+
+            <!-- Product Card 4 -->
+            <div class="product-card animate-on-scroll">
+              <a href="producto_mesas.html" class="product-image-wrapper">
+                <picture>
+                  <source srcset="images/mesas.webp" type="image/webp" />
+                  <img
+                    src="images/mesas.png"
+                    alt="Mesa de Snooker Championship"
+                    class="product-image"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+                <span
+                  class="badge bg-danger position-absolute top-0 start-0 m-2"
+                  >Oferta</span
+                >
+                <span
+                  class="badge bg-warning text-dark position-absolute top-0 end-0 m-2"
+                  >Mesas</span
+                >
+              </a>
+              <div class="product-content">
+                <h3 class="product-name">
+                  <a href="producto_mesas.html">Mesa de Snooker Professional</a>
+                </h3>
+                <div class="product-rating">
+                  <div class="stars">
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                    <span class="star filled">★</span>
+                  </div>
+                  <span class="review-count">(45)</span>
+                </div>
+                <div class="product-price">
+                  <span class="price-current">8500€</span>
+                  <span class="price-original">9200€</span>
+                </div>
+              </div>
+              <div class="product-footer">
+                <button
+                  class="btn btn-success w-100 d-flex align-items-center justify-content-center gap-2"
+                >
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                  >
+                    <circle cx="9" cy="21" r="1"></circle>
+                    <circle cx="20" cy="21" r="1"></circle>
+                    <path
+                      d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"
+                    ></path>
+                  </svg>
+                  Agregar al Carrito
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-footer">
+            <a href="productos.html" class="btn btn-primary btn-lg"
+              >Ver Todos los Productos</a
+            >
+          </div>
         </div>
-    </section>
+      </section>
 
-    <!-- About Section -->
-    <section id="sobre-mi" class="about">
+      <!-- Separador animado entre secciones -->
+      <div class="separator-animado" role="separator" aria-hidden="true"></div>
+
+      <!-- About Section -->
+      <section id="sobre-nosotros" class="about-section">
         <div class="container">
+          <div class="about-grid">
             <div class="about-content">
-                <h2>Sobre mí</h2>
-                <p>
-                    Estudiante de Desarrollo de Aplicaciones Web, apasionado por el diseño de interfaces 
-                    y la creación de experiencias web intuitivas y atractivas.
-                </p>
-                <p>
-                    Este portafolio reúne los proyectos desarrollados durante el curso de Diseño de Interfaces Web, 
-                    demostrando conocimientos en HTML5, CSS3, JavaScript, frameworks CSS y diseño responsive.
-                </p>
-                <div class="skills">
-                    <span class="skill">HTML5</span>
-                    <span class="skill">PHP</span>
-                    <span class="skill">CSS</span>
-                    <span class="skill">JavaScript</span>
-                    <span class="skill">Bootstrap</span>
-                    <span class="skill">Responsive Design</span>
-                    <span class="skill">Git & GitHub</span>
-                    <span class="skill">Java</span>
-                    <span class="skill">JavaFX</span>
-                    <span class="skill">Spring Boot</span>
-                    <span class="skill">mySQL</span>
-                    <span class="skill">React</span>
+              <h2 class="section-title">La mejor experiencia en billar</h2>
+              <p class="about-text">
+                En BillarPro somos apasionados del billar y nos dedicamos a
+                ofrecer los mejores productos y servicios para jugadores de
+                todos los niveles. Desde principiantes hasta profesionales,
+                tenemos todo lo que necesitas para mejorar tu juego.
+              </p>
+
+              <div class="features-grid">
+                <div class="feature">
+                  <div class="feature-icon">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <circle cx="12" cy="8" r="7"></circle>
+                      <polyline
+                        points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"
+                      ></polyline>
+                    </svg>
+                  </div>
+                  <div class="feature-text">
+                    <h3 class="feature-title">Calidad Premium</h3>
+                    <p class="feature-description">
+                      Productos de las mejores marcas mundiales de billar
+                    </p>
+                  </div>
                 </div>
+
+                <div class="feature">
+                  <div class="feature-icon">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <path
+                        d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+                      ></path>
+                      <circle cx="9" cy="7" r="4"></circle>
+                      <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                      <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                    </svg>
+                  </div>
+                  <div class="feature-text">
+                    <h3 class="feature-title">Experiencia</h3>
+                    <p class="feature-description">
+                      Más de 20 años en el mundo del billar profesional
+                    </p>
+                  </div>
+                </div>
+
+                <div class="feature">
+                  <div class="feature-icon">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <circle cx="12" cy="12" r="10"></circle>
+                      <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                  </div>
+                  <div class="feature-text">
+                    <h3 class="feature-title">Soporte 24/7</h3>
+                    <p class="feature-description">
+                      Asesoramiento personalizado para todos tus proyectos
+                    </p>
+                  </div>
+                </div>
+
+                <div class="feature">
+                  <div class="feature-icon">
+                    <svg
+                      width="32"
+                      height="32"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                    >
+                      <rect x="1" y="3" width="15" height="13"></rect>
+                      <polygon
+                        points="16 8 20 8 23 11 23 16 16 16 16 8"
+                      ></polygon>
+                      <circle cx="5.5" cy="18.5" r="2.5"></circle>
+                      <circle cx="18.5" cy="18.5" r="2.5"></circle>
+                    </svg>
+                  </div>
+                  <div class="feature-text">
+                    <h3 class="feature-title">Envío Gratis</h3>
+                    <p class="feature-description">
+                      Entrega gratuita en compras superiores a 100€
+                    </p>
+                  </div>
+                </div>
+              </div>
             </div>
+
+            <div class="about-image">
+              <picture>
+                <source srcset="images/mesa_img.webp" type="image/webp" />
+                <img
+                  src="images/mesa_img.jpg"
+                  alt="Sala de billar profesional"
+                  loading="lazy"
+                  decoding="async"
+                />
+              </picture>
+            </div>
+          </div>
         </div>
-    </section>
+      </section>
+
+      <!-- Separador animado entre secciones -->
+      <div class="separator-animado" role="separator" aria-hidden="true"></div>
+
+      <!-- Testimonios -->
+      <section class="testimonials-section">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+            <p class="section-description">
+              Testimonios reales de jugadores satisfechos
+            </p>
+          </div>
+
+          <div class="testimonials-grid">
+            <!-- Testimonio 1 -->
+            <div class="testimonial-card animate-on-scroll">
+              <div class="testimonial-rating">
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+              </div>
+              <p class="testimonial-text">
+                "Los tacos que compré en BillarPro han mejorado
+                significativamente mi juego. La calidad es excepcional y el
+                servicio al cliente es de primera."
+              </p>
+              <div class="testimonial-author">
+                <div class="author-avatar">CM</div>
+                <div class="author-info">
+                  <p class="author-name">Carlos Mendoza</p>
+                  <p class="author-role">Jugador Profesional</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonio 2 -->
+            <div class="testimonial-card animate-on-scroll">
+              <div class="testimonial-rating">
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+              </div>
+              <p class="testimonial-text">
+                "Equipé toda mi sala con productos de BillarPro. La
+                calidad-precio es insuperable y mis clientes siempre comentan lo
+                bien que se siente jugar aquí."
+              </p>
+              <div class="testimonial-author">
+                <div class="author-avatar">AR</div>
+                <div class="author-info">
+                  <p class="author-name">Ana Rodríguez</p>
+                  <p class="author-role">Propietaria de Salón de Billar</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Testimonio 3 -->
+            <div class="testimonial-card animate-on-scroll">
+              <div class="testimonial-rating">
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+                <span class="star filled">★</span>
+              </div>
+              <p class="testimonial-text">
+                "Como aficionado, encontré en BillarPro todo lo que necesitaba
+                para mi mesa casera. El asesoramiento fue perfecto y la entrega
+                muy rápida."
+              </p>
+              <div class="testimonial-author">
+                <div class="author-avatar">MT</div>
+                <div class="author-info">
+                  <p class="author-name">Miguel Torres</p>
+                  <p class="author-role">Entusiasta del Billar</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Separador animado entre secciones -->
+      <div class="separator-animado" role="separator" aria-hidden="true"></div>
+
+      <!-- Sección Pestañas: Explora Nuestras Categorías -->
+      <section class="categorias-section" aria-labelledby="categorias-titulo">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title" id="categorias-titulo">Explora Nuestras Categorías</h2>
+            <p class="section-description">
+              Todo lo que necesitas para el billar profesional, en un solo lugar
+            </p>
+          </div>
+
+          <!-- Pestañas (Bootstrap Nav Tabs) -->
+          <ul class="nav nav-tabs" id="categoriasTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link active"
+                id="tacos-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-tacos"
+                type="button"
+                role="tab"
+                aria-controls="tab-tacos"
+                aria-selected="true"
+              >Tacos</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="bolas-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-bolas"
+                type="button"
+                role="tab"
+                aria-controls="tab-bolas"
+                aria-selected="false"
+              >Bolas</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="mesas-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-mesas"
+                type="button"
+                role="tab"
+                aria-controls="tab-mesas"
+                aria-selected="false"
+              >Mesas</button>
+            </li>
+            <li class="nav-item" role="presentation">
+              <button
+                class="nav-link"
+                id="accesorios-tab"
+                data-bs-toggle="tab"
+                data-bs-target="#tab-accesorios"
+                type="button"
+                role="tab"
+                aria-controls="tab-accesorios"
+                aria-selected="false"
+              >Accesorios</button>
+            </li>
+          </ul>
+
+          <div class="tab-content" id="categoriasTabContent">
+            <!-- Tab Tacos -->
+            <div
+              class="tab-pane fade show active"
+              id="tab-tacos"
+              role="tabpanel"
+              aria-labelledby="tacos-tab"
+              tabindex="0"
+            >
+              <div class="categoria-tab-inner">
+                <picture>
+                  <source srcset="images/tacos.webp" type="image/webp" />
+                  <img
+                    src="images/tacos.jpeg"
+                    alt="Tacos profesionales de billar"
+                    class="cat-img"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+                <div class="categoria-tab-info">
+                  <h3>Tacos <span>Profesionales</span></h3>
+                  <p>
+                    Nuestra selección abarca desde modelos de iniciación hasta varas de competición
+                    internacional. Trabajamos con las mejores marcas para garantizar precisión,
+                    equilibrio y durabilidad en cada partida.
+                  </p>
+                  <ul class="cat-features">
+                    <li>Predator</li>
+                    <li>McDermott</li>
+                    <li>Mezz</li>
+                    <li>Cuetec</li>
+                    <li>Varas de una pieza</li>
+                    <li>Varas articuladas</li>
+                  </ul>
+                  <a href="producto_tacos.html" class="btn btn-primary">Ver Tacos</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab Bolas -->
+            <div
+              class="tab-pane fade"
+              id="tab-bolas"
+              role="tabpanel"
+              aria-labelledby="bolas-tab"
+              tabindex="0"
+            >
+              <div class="categoria-tab-inner">
+                <img
+                  src="images/bolas.jpg"
+                  alt="Set de bolas de billar premium Aramith"
+                  class="cat-img"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="categoria-tab-info">
+                  <h3>Bolas <span>Premium</span></h3>
+                  <p>
+                    Bolas fabricadas con materiales de alta tecnología para un rebote perfecto
+                    y durabilidad excepcional. Disponibles en sets completos para billar
+                    americano, snooker y carambola.
+                  </p>
+                  <ul class="cat-features">
+                    <li>Aramith Pro</li>
+                    <li>Aramith Super Pro</li>
+                    <li>Sets de snooker</li>
+                    <li>Sets de pool</li>
+                    <li>Bolas de práctica</li>
+                    <li>Bolas de repuesto</li>
+                  </ul>
+                  <a href="producto_bolas.html" class="btn btn-primary">Ver Bolas</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab Mesas -->
+            <div
+              class="tab-pane fade"
+              id="tab-mesas"
+              role="tabpanel"
+              aria-labelledby="mesas-tab"
+              tabindex="0"
+            >
+              <div class="categoria-tab-inner">
+                <picture>
+                  <source srcset="images/mesas.webp" type="image/webp" />
+                  <img
+                    src="images/mesas.png"
+                    alt="Mesa de billar de competición"
+                    class="cat-img"
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </picture>
+                <div class="categoria-tab-info">
+                  <h3>Mesas de <span>Competición</span></h3>
+                  <p>
+                    Mesas diseñadas para el máximo rendimiento, con tapetes de alta calidad
+                    y estructura robusta. Perfectas para uso doméstico o para salas
+                    profesionales de billar.
+                  </p>
+                  <ul class="cat-features">
+                    <li>Mesa de snooker</li>
+                    <li>Mesa americana</li>
+                    <li>Mesa de carambola</li>
+                    <li>Tapetes de repuesto</li>
+                    <li>Mesas plegables</li>
+                    <li>Servicio de instalación</li>
+                  </ul>
+                  <a href="producto_mesas.html" class="btn btn-primary">Ver Mesas</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Tab Accesorios -->
+            <div
+              class="tab-pane fade"
+              id="tab-accesorios"
+              role="tabpanel"
+              aria-labelledby="accesorios-tab"
+              tabindex="0"
+            >
+              <div class="categoria-tab-inner">
+                <img
+                  src="images/tizas.jpg"
+                  alt="Accesorios de billar: tizas, fundas y más"
+                  class="cat-img"
+                  loading="lazy"
+                  decoding="async"
+                />
+                <div class="categoria-tab-info">
+                  <h3>Accesorios <span>Esenciales</span></h3>
+                  <p>
+                    Complementa tu equipo con nuestra amplia selección de accesorios.
+                    Desde tizas profesionales hasta fundas y triángulos, todo lo que
+                    necesitas para jugar al máximo nivel.
+                  </p>
+                  <ul class="cat-features">
+                    <li>Tizas Master Chalk</li>
+                    <li>Fundas y estuches</li>
+                    <li>Guantes de billar</li>
+                    <li>Triángulos y racks</li>
+                    <li>Extensores</li>
+                    <li>Accesorios de limpieza</li>
+                  </ul>
+                  <a href="productos.html" class="btn btn-primary">Ver Accesorios</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Separador animado entre secciones -->
+      <div class="separator-animado" role="separator" aria-hidden="true"></div>
+
+      <!-- Sección Acordeón: Preguntas Frecuentes -->
+      <section class="faq-section" aria-labelledby="faq-titulo">
+        <div class="container">
+          <div class="section-header">
+            <h2 class="section-title" id="faq-titulo">Preguntas Frecuentes</h2>
+            <p class="section-description">
+              Resolvemos tus dudas sobre nuestros productos y servicios
+            </p>
+          </div>
+
+          <div class="accordion" id="faqAccordion">
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="faq-h1">
+                <button
+                  class="accordion-button"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq-c1"
+                  aria-expanded="true"
+                  aria-controls="faq-c1"
+                >
+                  ¿Qué tipos de tacos de billar tenéis disponibles?
+                </button>
+              </h3>
+              <div
+                id="faq-c1"
+                class="accordion-collapse collapse show"
+                aria-labelledby="faq-h1"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Disponemos de una amplia variedad: desde varas de iniciación para principiantes
+                  hasta tacos de competición profesional de marcas como Predator, McDermott y Mezz.
+                  Tenemos tacos de una pieza y articulados, para billar americano, snooker y carambola.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="faq-h2">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq-c2"
+                  aria-expanded="false"
+                  aria-controls="faq-c2"
+                >
+                  ¿Realizáis envíos internacionales?
+                </button>
+              </h3>
+              <div
+                id="faq-c2"
+                class="accordion-collapse collapse"
+                aria-labelledby="faq-h2"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Sí, realizamos envíos a toda Europa y a numerosos países fuera de la Unión Europea.
+                  Los costes y plazos varían según el destino. Escríbenos a
+                  <a href="mailto:info@billarpro.com">info@billarpro.com</a> para más información.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="faq-h3">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq-c3"
+                  aria-expanded="false"
+                  aria-controls="faq-c3"
+                >
+                  ¿Cuál es el tiempo de entrega?
+                </button>
+              </h3>
+              <div
+                id="faq-c3"
+                class="accordion-collapse collapse"
+                aria-labelledby="faq-h3"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  En España peninsular, el plazo habitual es de 24 a 48 horas laborables.
+                  Para Baleares, Canarias y Portugal, entre 3 y 5 días. Los productos de gran
+                  tamaño como mesas pueden requerir plazos adicionales por su logística especial.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="faq-h4">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq-c4"
+                  aria-expanded="false"
+                  aria-controls="faq-c4"
+                >
+                  ¿Ofrecéis garantía en los productos?
+                </button>
+              </h3>
+              <div
+                id="faq-c4"
+                class="accordion-collapse collapse"
+                aria-labelledby="faq-h4"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Todos nuestros productos incluyen la garantía legal de 2 años de la UE.
+                  Además, muchas marcas ofrecen garantías adicionales del fabricante: los tacos
+                  profesionales suelen cubrirse entre 1 y 5 años según el modelo.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="faq-h5">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq-c5"
+                  aria-expanded="false"
+                  aria-controls="faq-c5"
+                >
+                  ¿Puedo devolver un producto si no estoy satisfecho?
+                </button>
+              </h3>
+              <div
+                id="faq-c5"
+                class="accordion-collapse collapse"
+                aria-labelledby="faq-h5"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Sí, dispones de 30 días desde la recepción para devolver cualquier producto
+                  en perfectas condiciones. Los reembolsos se procesan en un plazo de 7 días
+                  hábiles. Los gastos de devolución corren a cargo del cliente salvo error nuestro.
+                </div>
+              </div>
+            </div>
+
+            <div class="accordion-item">
+              <h3 class="accordion-header" id="faq-h6">
+                <button
+                  class="accordion-button collapsed"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#faq-c6"
+                  aria-expanded="false"
+                  aria-controls="faq-c6"
+                >
+                  ¿Dónde puedo ver los productos físicamente?
+                </button>
+              </h3>
+              <div
+                id="faq-c6"
+                class="accordion-collapse collapse"
+                aria-labelledby="faq-h6"
+                data-bs-parent="#faqAccordion"
+              >
+                <div class="accordion-body">
+                  Nuestra tienda está en la Calle del Percebe 13, Almería. Abrimos de lunes a
+                  viernes de 10:00 a 20:00 y sábados de 10:00 a 14:00. También puedes concertar
+                  visita llamando al +34 (666) 12 34 56.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
     </main>
 
     <!-- Footer -->
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 Francisco Miguel Casas Méndez</p>
-            <p>DAW | Desarrollo de Aplicaciones Web</p>
-            <!-- Enlace solo para entorno local (no visible en GitHub Pages) -->
-            <p id="dev-local-link" style="display:none; margin-top:8px; font-size:0.9rem;">
-                <a href="/php/info.php" rel="nofollow">🔧 PHP info (solo local)</a>
+    <footer id="contacto" class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <!-- Company Info -->
+          <div class="footer-column footer-main">
+            <h3 class="footer-title">BillarPro</h3>
+            <p class="footer-text">
+              Tu tienda especializada en productos de billar de alta calidad.
+              Ofrecemos todo lo que necesitas para llevar tu juego al siguiente
+              nivel.
             </p>
-            <div class="social-links">
-                <a href="https://github.com/fcasmen658" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
-                        <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
-                    </svg>
-                </a>
+
+            <div class="footer-contact">
+              <div class="contact-item">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
+                  ></path>
+                  <circle cx="12" cy="10" r="3"></circle>
+                </svg>
+                <span>Calle del Percebe 13, Almería, España</span>
+              </div>
+              <div class="contact-item">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"
+                  ></path>
+                </svg>
+                <span>+34 (666) 12 34 56</span>
+              </div>
+              <div class="contact-item">
+                <svg
+                  width="20"
+                  height="20"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"
+                  ></path>
+                  <polyline points="22,6 12,13 2,6"></polyline>
+                </svg>
+                <span>info@billarpro.com</span>
+              </div>
             </div>
+          </div>
+
+          <!-- Quick Links -->
+          <div class="footer-column">
+            <h4 class="footer-heading">Enlaces Rápidos</h4>
+            <ul class="footer-links">
+              <li><a href="#inicio">Inicio</a></li>
+              <li><a href="#productos">Productos</a></li>
+              <li><a href="#sobre-nosotros">Sobre Nosotros</a></li>
+              <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+          </div>
+
+          <!-- Categorías -->
+          <div class="footer-column">
+            <h4 class="footer-heading">Categorías</h4>
+            <ul class="footer-links">
+              <li><a href="#productos">Tacos</a></li>
+              <li><a href="#productos">Bolas</a></li>
+              <li><a href="#productos">Mesas</a></li>
+              <li><a href="#productos">Accesorios</a></li>
+            </ul>
+          </div>
         </div>
+
+        <div class="footer-bottom">
+          <p class="footer-copyright">
+            Diseñado por fcasmen658 con
+            <svg
+              class="footer-heart-icon"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 16 16"
+              width="20"
+              height="20"
+            >
+              <path
+                d="M2 6.342a3.375 3.375 0 0 1 6-2.088a3.375 3.375 0 0 1 5.997 2.26c-.063 2.134-1.618 3.76-2.955 4.784a14.4 14.4 0 0 1-2.676 1.61q-.031.015-.05.022l-.014.006l-.004.002h-.002a.75.75 0 0 1-.592.001h-.002l-.004-.003l-.015-.006a6 6 0 0 1-.232-.107a14.4 14.4 0 0 1-2.535-1.557C3.564 10.22 1.999 8.558 1.999 6.38z"
+              />
+            </svg>
+            para BillarPro. © 2025. Todos los derechos reservados.
+          </p>
+
+          <div class="social-links">
+            <a href="#" aria-label="Facebook">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"
+                ></path>
+              </svg>
+            </a>
+            <a href="#" aria-label="Instagram">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
+                <path
+                  d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"
+                ></path>
+                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
+              </svg>
+            </a>
+            <a href="#" aria-label="Twitter">
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+              >
+                <path
+                  d="M23 3a10.9 10.9 0 0 1-3.14 1.53 4.48 4.48 0 0 0-7.86 3v1A10.66 10.66 0 0 1 3 4s-4 9 5 13a11.64 11.64 0 0 1-7 2c9 5 20 0 20-11.5a4.5 4.5 0 0 0-.08-.83A7.72 7.72 0 0 0 23 3z"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </div>
     </footer>
-    <script>
-    (function(){
-        try {
-            var host = location.hostname;
-            if (host === 'localhost' || host === '127.0.0.1') {
-                var el = document.getElementById('dev-local-link');
-                if (el) el.style.display = 'block';
-            }
-        } catch (e) { /* no-op */ }
-    })();
-    </script>
-</body>
+
+    <!-- Bootstrap JS Bundle (Carrusel, Acordeón, Pestañas, Toasts) -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+      crossorigin="anonymous"
+    ></script>
+    <script src="js/script.js" defer></script>
+    <!-- Módulo del carrito -->
+    <script type="module" src="js/cart-ui.js"></script>
+
+    <!-- Contenedor de notificaciones (Bootstrap Toasts) -->
+    <div id="toastContainer" aria-live="polite" aria-atomic="false"></div>
+
+    <!-- Botón Volver Arriba -->
+    <button
+      id="btnSubirArriba"
+      class="btn-subir-arriba"
+      aria-label="Volver al inicio de la página"
+      title="Volver arriba"
+    >
+      <svg
+        width="22"
+        height="22"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2.5"
+        aria-hidden="true"
+      >
+        <line x1="12" y1="19" x2="12" y2="5"></line>
+        <polyline points="5 12 12 5 19 12"></polyline>
+      </svg>
+    </button>
+  </body>
 </html>

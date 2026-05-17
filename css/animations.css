@@ -1,0 +1,369 @@
+/* ==============================================================
+   ANIMACIONES CSS — APARTADO 4
+   BillarPro · DIW TareaOnline 05
+   ==============================================================
+
+   Índice de animaciones:
+     1.  Microinteracción en tarjeta producto  (hover + :focus-within)
+     2.  Separador animado en bucle            (degradado deslizante)
+     3.  Borde animado en imagen principal     (outline pulsante y cromático)
+     4.  Efecto pulse en botón CTA             (@keyframes pulse-cta)
+     5.  Entrada al hacer scroll               (IntersectionObserver + CSS)
+     6.  Flotación suave (libre)               (imagen sección "Sobre Nosotros")
+     7.  Brillo deslizante (libre)             (destello en imagen de producto)
+     8.  Logo SVG — Fase 1 carga              (bola cae con rebote al entrar)
+     9.  Logo SVG — Fase 2 hover              (bola gira al pasar el ratón)
+     ∞.  Reducción de movimiento obligatoria   (@media prefers-reduced-motion)
+   ============================================================== */
+
+/* ==============================================================
+   VARIABLES DE ANIMACIÓN
+   Se añaden al :root existente para no duplicar el bloque entero.
+   Siguen el mismo sistema de nombres del proyecto.
+   ============================================================== */
+:root {
+  /* Duraciones */
+  --duracion-transicion: 0.3s;
+  --duracion-pulse: 2s;
+  --duracion-float: 4s;
+  --duracion-separador: 5s;
+  --duracion-borde: 4s;
+  --duracion-scroll-entry: 0.6s;
+  --duracion-brillo: 1.2s;
+
+  /* Colores auxiliares para animaciones */
+  --color-pulse: rgba(46, 125, 50, 0.45);
+
+  /* Easing personalizado */
+  --easing-suave: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* ==============================================================
+   1. MICROINTERACCIÓN EN TARJETA PRODUCTO
+      — Hover: eleva la tarjeta con scale + sombra + fondo sutil.
+      — Teclado: :focus-within se activa cuando el enlace interno
+        recibe foco al navegar con Tab, sin necesidad de JS.
+   ============================================================== */
+.product-card {
+  /* Se especifican propiedades individuales para no sobreescribir
+       la propiedad `transition: all` existente de manera abrupta. */
+  transition:
+    transform var(--duracion-transicion) var(--easing-suave),
+    background-color var(--duracion-transicion) ease,
+    box-shadow var(--duracion-transicion) ease;
+}
+
+.product-card:hover,
+.product-card:focus-within {
+  transform: scale(1.035) translateY(-5px);
+  background-color: var(--color-fondo-secundario);
+  box-shadow: var(--shadow-xl);
+}
+
+/* ==============================================================
+   2. SEPARADOR ANIMADO EN BUCLE
+      — Degradado horizontal que se desplaza continuamente.
+      — El fondo de 300 % de ancho permite el efecto de bucle
+        sin saltos visibles.
+   ============================================================== */
+.separator-animado {
+  display: block;
+  height: 5px;
+  width: 100%;
+  border: none;
+  background: linear-gradient(
+    90deg,
+    var(--color-mesa-verde),
+    var(--color-azul-profundo),
+    var(--color-rojo-intenso),
+    var(--color-amarillo-brillante),
+    var(--color-mesa-verde)
+  );
+  background-size: 300% 100%;
+  animation: separador-desplazar var(--duracion-separador) linear infinite;
+}
+
+@keyframes separador-desplazar {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ==============================================================
+   3. BORDE ANIMADO EN IMAGEN PRINCIPAL (hero)
+      — box-shadow inset cambia de color y grosor progresivamente.
+      — Al ser inset, el borde crece hacia dentro del elemento y
+        nunca se desborda más allá de sus límites.
+   ============================================================== */
+.hero-image {
+  animation: borde-hero var(--duracion-borde) ease-in-out infinite;
+}
+
+@keyframes borde-hero {
+  0% {
+    box-shadow: inset 0 0 0 4px var(--color-mesa-verde);
+  }
+  25% {
+    box-shadow: inset 0 0 0 8px var(--color-azul-profundo);
+  }
+  50% {
+    box-shadow: inset 0 0 0 14px var(--color-rojo-intenso);
+  }
+  75% {
+    box-shadow: inset 0 0 0 8px var(--color-amarillo-brillante);
+  }
+  100% {
+    box-shadow: inset 0 0 0 4px var(--color-mesa-verde);
+  }
+}
+
+/* ==============================================================
+   4. EFECTO PULSE EN BOTÓN CTA PRINCIPAL
+      — box-shadow que se expande y se desvanece en bucle.
+      — Se usa transform + opacity-like shadow para evitar repintados
+        de layout; box-shadow no altera el flujo del documento.
+   ============================================================== */
+@keyframes pulse-cta {
+  0% {
+    box-shadow: 0 0 0 0 var(--color-pulse);
+  }
+  70% {
+    box-shadow: 0 0 0 14px transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.btn-pulse {
+  animation: pulse-cta var(--duracion-pulse) ease-out infinite;
+}
+
+/* ==============================================================
+   5. ANIMACIÓN AL HACER SCROLL
+      — .animate-on-scroll: estado inicial (invisible + desplazado).
+      — .is-visible: estado final que JS activa con IntersectionObserver.
+      — Únicamente CSS controla la transición; JS solo añade la clase.
+   ============================================================== */
+.animate-on-scroll {
+  opacity: 0;
+  transform: translateY(28px);
+  transition:
+    opacity var(--duracion-scroll-entry) var(--easing-suave),
+    transform var(--duracion-scroll-entry) var(--easing-suave);
+}
+
+.animate-on-scroll.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Retardo escalonado para elementos hermanos en cuadrícula */
+.animate-on-scroll:nth-child(2) {
+  transition-delay: 0.1s;
+}
+.animate-on-scroll:nth-child(3) {
+  transition-delay: 0.2s;
+}
+.animate-on-scroll:nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+/* ==============================================================
+   6. ANIMACIÓN LIBRE — FLOTACIÓN SUAVE
+      — La imagen de la sección "Sobre Nosotros" flota de forma
+        continua, usando solo transform (sin repintado de layout).
+   ============================================================== */
+@keyframes flotar {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
+
+.about-image picture {
+  display: block;
+  animation: flotar var(--duracion-float) ease-in-out infinite;
+}
+
+/* ==============================================================
+   7. ANIMACIÓN LIBRE — BRILLO DESLIZANTE EN IMÁGENES DE PRODUCTO
+      — Un destello blanco atraviesa la imagen al hacer hover.
+      — ::after se desplaza solo con transform; opacity suaviza
+        la entrada y salida del reflejo.
+      — .product-card con overflow: hidden recorta el desbordamiento.
+   ============================================================== */
+.product-image-wrapper::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.55) 50%,
+    transparent 100%
+  );
+  transform: translateX(-150%) skewX(-20deg);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 3;
+}
+
+@keyframes brillo-paso {
+  0% {
+    transform: translateX(-150%) skewX(-20deg);
+    opacity: 0;
+  }
+  35% {
+    opacity: 0.55;
+  }
+  100% {
+    transform: translateX(250%) skewX(-20deg);
+    opacity: 0;
+  }
+}
+
+.product-card:hover .product-image-wrapper::after,
+.product-card:focus-within .product-image-wrapper::after {
+  animation: brillo-paso var(--duracion-brillo) ease-in-out forwards;
+}
+
+/* ==============================================================
+   ACCESIBILIDAD OBLIGATORIA
+   @media (prefers-reduced-motion: reduce)
+
+   Desactiva o minimiza todas las animaciones no esenciales.
+   La web sigue siendo completamente usable y funcional.
+   ============================================================== */
+@media (prefers-reduced-motion: reduce) {
+  /* 1. Microinteracción: sin escala ni desplazamiento */
+  .product-card:hover,
+  .product-card:focus-within {
+    transform: none;
+    background-color: var(--color-fondo-secundario);
+    box-shadow: var(--shadow-md);
+  }
+
+  /* 2. Separador: sin movimiento, color fijo */
+  .separator-animado {
+    animation: none;
+    background: var(--color-mesa-verde);
+    background-size: 100% 100%;
+  }
+
+  /* 3. Borde hero: sin animación, borde estático */
+  .hero-image {
+    animation: none;
+    box-shadow: inset 0 0 0 4px var(--color-mesa-verde);
+  }
+
+  /* 4. Pulse: sin efecto */
+  .btn-pulse {
+    animation: none;
+  }
+
+  /* 5. Scroll: visibles desde el inicio, sin transición */
+  .animate-on-scroll {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  /* 6. Flotación: detenida */
+  .about-image picture {
+    animation: none;
+  }
+
+  /* 7. Brillo: oculto */
+  .product-image-wrapper::after {
+    display: none;
+  }
+
+  /* 8. Logo carga: sin caída */
+  .logo-bola {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+
+  /* 9. Logo hover: sin giro */
+  .logo-svg:hover .logo-bola {
+    animation: none;
+  }
+}
+
+/* ==============================================================
+   8. LOGO SVG — FASE 1: CAÍDA AL CARGAR
+      — La bola de billar entra desde arriba con un pequeño rebote.
+      — Se usa translateY exclusivamente para evitar repintados de
+        layout. transform-box: fill-box asegura que el origen de
+        transformación sea el centro de la propia bola.
+   ============================================================== */
+@keyframes logo-caida {
+  0% {
+    transform: translateY(-16px);
+    opacity: 0;
+  }
+  65% {
+    transform: translateY(4px);
+    opacity: 1;
+  }
+  82% {
+    transform: translateY(-2px);
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Tamaño y posición del SVG del logo */
+.logo-svg {
+  height: 150px;
+  width: 150px;
+  display: block;
+}
+
+/* Colores del texto compatibles con dark mode (usan variables CSS) */
+.logo-text-nombre {
+  fill: var(--color-texto-primario);
+}
+
+.logo-text-pro {
+  fill: var(--color-azul-profundo);
+}
+
+/* Bola: animación de entrada y origin centrado en la propia bola */
+.logo-bola {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: logo-caida 0.7s cubic-bezier(0.34, 1.4, 0.64, 1) forwards;
+}
+
+/* ==============================================================
+   9. LOGO SVG — FASE 2: GIRO AL HOVER
+      — Al posicionar el ratón sobre el logo la bola gira 360°
+        sobre su propio eje, simulando que rueda sobre el tapete.
+      — rotate() no afecta al layout: sin repintado de página.
+   ============================================================== */
+@keyframes logo-giro {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.logo-svg:hover .logo-bola {
+  animation: logo-giro 0.6s ease-in-out;
+}
